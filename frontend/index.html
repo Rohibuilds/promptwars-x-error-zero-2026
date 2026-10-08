@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>RA NEXUS</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+    <div class="app">
+
+        <header class="header">
+            <div class="brand">
+                <div class="logo">RA</div>
+
+                <div>
+                    <h1>RA NEXUS</h1>
+                    <p>Autonomous AI Assistant</p>
+                </div>
+            </div>
+
+            <div class="status">
+                <span></span>
+                ONLINE
+            </div>
+        </header>
+
+        <main class="chat-container">
+
+            <div class="welcome">
+                <div class="nexus-icon">N</div>
+
+                <h2>Understand. Decide. Act.</h2>
+
+                <p>Welcome to RA NEXUS</p>
+            </div>
+
+            <div id="messages"></div>
+
+        </main>
+
+        <div class="input-area">
+
+            <input
+                id="messageInput"
+                type="text"
+                placeholder="Ask NEXUS anything..."
+                autocomplete="off"
+            >
+
+            <button id="sendButton">➤</button>
+
+        </div>
+
+    </div>
+
+    <script src="app.js"></script>
+
+</body>
+</html>

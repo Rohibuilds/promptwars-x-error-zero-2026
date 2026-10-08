@@ -1,0 +1,29 @@
+[
+  {
+    "title": "Electronics Laboratory",
+    "location": "Block A, First Floor",
+    "description": "Laboratory for electronics and embedded systems projects",
+    "equipment": [
+      "Oscilloscope",
+      "Function Generator",
+      "Digital Multimeter",
+      "DC Power Supply"
+    ]
+  },
+  {
+    "title": "Computer Laboratory",
+    "location": "Block B, Second Floor",
+    "description": "Computer laboratory for programming and software development",
+    "equipment": [
+      "Desktop Computers",
+      "Networking Equipment",
+      "Projector"
+    ]
+  },
+  {
+    "title": "Library",
+    "location": "Main Academic Block",
+    "description": "Central library containing academic books and reference material",
+    "timings": "9:00 AM to 6:00 PM"
+  }
+]
