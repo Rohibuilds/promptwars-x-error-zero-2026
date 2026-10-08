@@ -1,61 +1,322 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>RA NEXUS</title>
+
+    <title>RA NEXUS | Autonomous AI</title>
+
     <link rel="stylesheet" href="style.css">
 </head>
+
 <body>
 
     <div class="app">
 
-        <header class="header">
-            <div class="brand">
-                <div class="logo">RA</div>
+        <!-- SIDEBAR -->
+
+        <aside class="sidebar">
+
+            <div class="sidebar-brand">
+
+                <div class="brand-logo">
+                    RA
+                </div>
 
                 <div>
                     <h1>RA NEXUS</h1>
-                    <p>Autonomous AI Assistant</p>
+                    <span>AUTONOMOUS AI</span>
                 </div>
+
             </div>
 
-            <div class="status">
-                <span></span>
-                ONLINE
+
+            <div class="system-card">
+
+                <div class="system-header">
+                    <span class="pulse"></span>
+                    SYSTEM ONLINE
+                </div>
+
+                <div class="system-value">
+                    NEXUS CORE
+                </div>
+
+                <div class="system-sub">
+                    Agent Engine v0.1
+                </div>
+
             </div>
-        </header>
 
-        <main class="chat-container">
 
-            <div class="welcome">
-                <div class="nexus-icon">N</div>
+            <nav class="navigation">
 
-                <h2>Understand. Decide. Act.</h2>
+                <div class="nav-title">
+                    WORKSPACE
+                </div>
 
-                <p>Welcome to RA NEXUS</p>
+                <button class="nav-item active">
+                    <span>◈</span>
+                    AI Assistant
+                </button>
+
+                <button class="nav-item">
+                    <span>⌘</span>
+                    Tools
+                </button>
+
+                <button class="nav-item">
+                    <span>▣</span>
+                    Knowledge
+                </button>
+
+                <button class="nav-item">
+                    <span>◌</span>
+                    Activity
+                </button>
+
+            </nav>
+
+
+            <div class="sidebar-bottom">
+
+                <div class="version">
+                    RA NEXUS
+                    <span>v0.1.0</span>
+                </div>
+
+                <div class="ra-tech">
+                    POWERED BY
+                    <strong>RA TECH</strong>
+                </div>
+
             </div>
 
-            <div id="messages"></div>
+        </aside>
+
+
+        <!-- MAIN -->
+
+        <main class="main">
+
+            <header class="topbar">
+
+                <div>
+
+                    <div class="page-label">
+                        AUTONOMOUS AGENT
+                    </div>
+
+                    <h2>Command Center</h2>
+
+                </div>
+
+
+                <div class="top-status">
+
+                    <span class="status-dot"></span>
+
+                    <span>
+                        ONLINE
+                    </span>
+
+                </div>
+
+            </header>
+
+
+            <section class="workspace">
+
+
+                <!-- WELCOME -->
+
+                <div class="hero">
+
+                    <div class="hero-icon">
+                        N
+                    </div>
+
+                    <div>
+
+                        <div class="eyebrow">
+                            RA NEXUS CORE
+                        </div>
+
+                        <h3>
+                            Understand.
+                            <span>Decide.</span>
+                            Act.
+                        </h3>
+
+                        <p>
+                            An autonomous AI agent designed to understand
+                            problems, select tools and produce useful results.
+                        </p>
+
+                    </div>
+
+                </div>
+
+
+                <!-- QUICK ACTIONS -->
+
+                <div class="quick-section">
+
+                    <div class="section-label">
+                        QUICK ACTIONS
+                    </div>
+
+
+                    <div class="quick-grid">
+
+                        <button
+                            class="quick-card"
+                            data-message="Where is the electronics laboratory?"
+                        >
+
+                            <div class="quick-icon">
+                                ⌖
+                            </div>
+
+                            <div>
+                                <strong>Find Location</strong>
+                                <span>Search the knowledge base</span>
+                            </div>
+
+                        </button>
+
+
+                        <button
+                            class="quick-card"
+                            data-message="What equipment is available in the electronics laboratory?"
+                        >
+
+                            <div class="quick-icon">
+                                ⚙
+                            </div>
+
+                            <div>
+                                <strong>Find Equipment</strong>
+                                <span>Discover available resources</span>
+                            </div>
+
+                        </button>
+
+
+                        <button
+                            class="quick-card"
+                            data-message="What are the library timings?"
+                        >
+
+                            <div class="quick-icon">
+                                ◷
+                            </div>
+
+                            <div>
+                                <strong>Check Timings</strong>
+                                <span>Get facility information</span>
+                            </div>
+
+                        </button>
+
+
+                        <button
+                            class="quick-card"
+                            data-message="What can you help me with?"
+                        >
+
+                            <div class="quick-icon">
+                                ✦
+                            </div>
+
+                            <div>
+                                <strong>Explore NEXUS</strong>
+                                <span>Discover capabilities</span>
+                            </div>
+
+                        </button>
+
+                    </div>
+
+                </div>
+
+
+                <!-- ACTIVITY -->
+
+                <div class="activity-section">
+
+                    <div class="section-label">
+                        AGENT ACTIVITY
+                    </div>
+
+                    <div
+                        id="activity"
+                        class="activity"
+                    >
+
+                        <div class="activity-empty">
+                            <span>◉</span>
+                            Waiting for a task
+                        </div>
+
+                    </div>
+
+                </div>
+
+
+                <!-- MESSAGES -->
+
+                <div
+                    id="messages"
+                    class="messages"
+                ></div>
+
+
+            </section>
+
+
+            <!-- INPUT -->
+
+            <div class="input-wrapper">
+
+                <div class="input-box">
+
+                    <div class="input-status">
+                        <span class="input-dot"></span>
+                    </div>
+
+                    <input
+                        id="messageInput"
+                        type="text"
+                        placeholder="Give NEXUS a task..."
+                        autocomplete="off"
+                    >
+
+                    <button
+                        id="sendButton"
+                        aria-label="Send message"
+                    >
+                        ➜
+                    </button>
+
+                </div>
+
+                <div class="input-hint">
+                    ENTER to send
+                    <span>•</span>
+                    NEXUS can search its knowledge base
+                </div>
+
+            </div>
 
         </main>
 
-        <div class="input-area">
-
-            <input
-                id="messageInput"
-                type="text"
-                placeholder="Ask NEXUS anything..."
-                autocomplete="off"
-            >
-
-            <button id="sendButton">➤</button>
-
-        </div>
-
     </div>
+
 
     <script src="app.js"></script>
 
 </body>
+
 </html>
