@@ -5,7 +5,7 @@ const activity = document.getElementById("activity");
 
 const quickCards = document.querySelectorAll(".quick-card");
 
-const API_URL = "http://127.0.0.1:8000/chat";
+const API_URL = "/chat";
 
 
 function addMessage(text, type) {
