@@ -2,73 +2,125 @@ RA NEXUS
 
 An AI Agent for Turning Questions into Actions
 
-RA NEXUS is an AI assistant prototype built by RA Tech for the PromptWars × Error Zero hackathon
+RA NEXUS is an AI assistant prototype built by RA Tech for the PromptWars × Error Zero 2026 hackathon. It combines a knowledge search system, a safe calculator, and system status tools in a clean web dashboard.
 
 Features
 
-* Knowledge search using a local JSON knowledge base
-* Safe calculator for supported mathematical expressions
-* System status and available tools
-* Dark themed dashboard with Tools Knowledge and Activity views
-* FastAPI backend with input validation
+* Knowledge Search — Search a local JSON knowledge base for campus information and laboratory equipment
+* Safe Calculator — Evaluate supported mathematical expressions using a restricted arithmetic evaluator
+* System Status — Check whether RA NEXUS is online and view its available tools
+* Interactive Dashboard — Dark-themed interface with Tools, Knowledge, and Activity views
+* Input Validation — Validate user messages using FastAPI and Pydantic
+* Local Knowledge Base — Store and retrieve information from a JSON file
 
 Technology Stack
 
 * Python
-* FastAPI and Pydantic
-* HTML CSS and JavaScript
+* FastAPI
+* Pydantic
+* HTML, CSS, and JavaScript
 * JSON
+* Git and GitHub
 
-Setup
+Project Structure
 
-Requirements Python 3.9 or compatible version and pip
+RA-NEXUS/
+├── backend/
+│   ├── main.py
+│   ├── agent.py
+│   ├── tools.py
+│   └── requirements.txt
+├── frontend/
+│   ├── index.html
+│   ├── style.css
+│   └── app.js
+├── data/
+│   └── knowledge.json
+├── README.md
+└── .gitignore
 
-Create a virtual environment and activate it
+Getting Started
+
+Requirements
+
+* Python 3.9 or compatible version
+* pip
+* Git
+
+1. Clone the repository
+
+git clone https://github.com/Rohibuilds/promptwars-x-error-zero-2026.git
+cd promptwars-x-error-zero-2026
+
+2. Create and activate a virtual environment
 
 python3 -m venv .venv
 source .venv/bin/activate
 
-Install dependencies
+3. Install dependencies
 
 pip install -r backend/requirements.txt
 
-Start the backend
+4. Start the backend
+
+From the project root, run:
 
 uvicorn backend.main:app --reload
 
-In a second Terminal start the frontend
+The backend will be available at:
+
+* API health endpoint: http://127.0.0.1:8000/
+* Interactive API documentation: http://127.0.0.1:8000/docs
+
+5. Start the frontend
+
+Open a second Terminal window, navigate to the project directory, and run:
 
 python3 -m http.server 5500 --directory frontend
 
-Open the website at http://127.0.0.1:5500/
+Open the dashboard at:
 
-API health endpoint http://127.0.0.1:8000/
+http://127.0.0.1:5500/
 
-Interactive API documentation http://127.0.0.1:8000/docs
+API Usage
 
-API
+Chat endpoint
 
 POST /chat
 
-Example request
+Example request:
 
 {
-  "message": "What equipment is available in the electronics laboratory?"
+  "message": "Where is the electronics laboratory located?"
 }
+
+Example calculator request:
+
+{
+  "message": "Calculate 25 plus 17"
+}
+
+The backend returns a structured response based on the selected tool.
 
 Current Scope
 
-This prototype uses rule based routing and local tools and is not yet a general purpose language model assistant
+RA NEXUS currently uses rule-based intent routing and local tools. It is a working assistant prototype, not yet a general-purpose large language model agent. Its capabilities are limited to the intents and information implemented in the project.
 
 Security
 
-* Messages are validated for length and empty input
-* Calculator expressions use a restricted arithmetic evaluator
-* Cross origin requests are restricted to the local development frontend
-* Review authentication and deployment security before exposing the application publicly
+* User messages are validated for empty input and maximum length
+* Calculator expressions are evaluated using a restricted arithmetic evaluator
+* Cross-origin requests are restricted to the local development frontend
+* Production deployment requires appropriate CORS configuration, secure hosting, and additional security review
 
 Vision
 
-RA NEXUS aims to connect knowledge tools and real world interfaces to solve practical problems
+RA NEXUS aims to connect knowledge, intelligent tools, and real-world interfaces to solve practical problems through accessible AI-assisted workflows.
 
-Built by RA Tech
+Hackathon
+
+Event: PromptWars × Error Zero 2026
+Project: RA NEXUS
+Built by: RA Tech
+
+This repository contains the prototype and its supporting source code. Features described as future goals should not be considered implemented unless they are present in the current codebase.
