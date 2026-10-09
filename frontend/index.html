@@ -4,6 +4,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="RA NEXUS - Autonomous AI Agent Command Center for campus information, tools, and smart assistance.">
 
     <title>RA NEXUS | Autonomous AI</title>
 
@@ -12,15 +13,17 @@
 
 <body>
 
+    <a href="#main-content" class="skip-link">Skip to main content</a>
+
     <div class="app">
 
         <!-- SIDEBAR -->
 
-        <aside class="sidebar">
+        <aside class="sidebar" aria-label="Sidebar navigation">
 
             <div class="sidebar-brand">
 
-                <div class="brand-logo">
+                <div class="brand-logo" aria-hidden="true">
                     RA
                 </div>
 
@@ -35,7 +38,7 @@
             <div class="system-card">
 
                 <div class="system-header">
-                    <span class="pulse"></span>
+                    <span class="pulse" aria-hidden="true"></span>
                     SYSTEM ONLINE
                 </div>
 
@@ -50,29 +53,29 @@
             </div>
 
 
-            <nav class="navigation">
+            <nav class="navigation" aria-label="Workspace navigation">
 
                 <div class="nav-title">
                     WORKSPACE
                 </div>
 
-                <button class="nav-item active" data-view="assistant">
-                    <span>◈</span>
+                <button class="nav-item active" data-view="assistant" aria-current="page">
+                    <span aria-hidden="true">◈</span>
                     AI Assistant
                 </button>
 
                 <button class="nav-item" data-view="tools">
-                    <span>⌘</span>
+                    <span aria-hidden="true">⌘</span>
                     Tools
                 </button>
 
                 <button class="nav-item" data-view="knowledge">
-                    <span>▣</span>
+                    <span aria-hidden="true">▣</span>
                     Knowledge
                 </button>
 
                 <button class="nav-item" data-view="activity">
-                    <span>◌</span>
+                    <span aria-hidden="true">◌</span>
                     Activity
                 </button>
 
@@ -98,7 +101,7 @@
 
         <!-- MAIN -->
 
-        <main class="main">
+        <main class="main" id="main-content" role="main" tabindex="-1">
 
             <header class="topbar">
 
@@ -115,7 +118,7 @@
 
                 <div class="top-status">
 
-                    <span class="status-dot"></span>
+                    <span class="status-dot" aria-hidden="true"></span>
 
                     <span>
                         ONLINE
@@ -126,14 +129,15 @@
             </header>
 
 
-            <section class="workspace">
+            <section id="assistantView" class="workspace" aria-label="Assistant Workspace">
+
 
 
                 <!-- WELCOME -->
 
                 <div class="hero">
 
-                    <div class="hero-icon">
+                    <div class="hero-icon" aria-hidden="true">
                         N
                     </div>
 
@@ -175,7 +179,7 @@
                             data-message="Where is the electronics laboratory?"
                         >
 
-                            <div class="quick-icon">
+                            <div class="quick-icon" aria-hidden="true">
                                 ⌖
                             </div>
 
@@ -192,7 +196,7 @@
                             data-message="What equipment is available in the electronics laboratory?"
                         >
 
-                            <div class="quick-icon">
+                            <div class="quick-icon" aria-hidden="true">
                                 ⚙
                             </div>
 
@@ -209,7 +213,7 @@
                             data-message="What are the library timings?"
                         >
 
-                            <div class="quick-icon">
+                            <div class="quick-icon" aria-hidden="true">
                                 ◷
                             </div>
 
@@ -226,7 +230,7 @@
                             data-message="What can you help me with?"
                         >
 
-                            <div class="quick-icon">
+                            <div class="quick-icon" aria-hidden="true">
                                 ✦
                             </div>
 
@@ -244,10 +248,16 @@
 
                 <!-- MESSAGES -->
 
+                <div id="liveAnnouncer" class="sr-only" role="status" aria-live="polite" aria-atomic="true"></div>
+
                 <div
                     id="messages"
                     class="messages"
+                    role="log"
+                    aria-label="Conversation history"
+                    aria-relevant="additions text"
                 ></div>
+
 
 
             </section>
@@ -256,14 +266,14 @@
 
             <!-- WORKSPACE PANELS -->
 
-            <section id="toolsView" class="workspace-view" hidden>
+            <section id="toolsView" class="workspace-view" aria-label="Tools" hidden>
 
                 <div class="section-label">
                     TOOLS
                 </div>
 
                 <div class="workspace-card">
-                    <div class="workspace-card-icon">⌘</div>
+                    <div class="workspace-card-icon" aria-hidden="true">⌘</div>
                     <div>
                         <strong>Knowledge Search</strong>
                         <p>Searches the NEXUS knowledge base for relevant information.</p>
@@ -272,7 +282,7 @@
                 </div>
 
                 <div class="workspace-card">
-                    <div class="workspace-card-icon">∑</div>
+                    <div class="workspace-card-icon" aria-hidden="true">∑</div>
                     <div>
                         <strong>Calculator</strong>
                         <p>Performs safe mathematical calculations from natural language requests.</p>
@@ -281,7 +291,7 @@
                 </div>
 
                 <div class="workspace-card">
-                    <div class="workspace-card-icon">◉</div>
+                    <div class="workspace-card-icon" aria-hidden="true">◉</div>
                     <div>
                         <strong>System Status</strong>
                         <p>Checks the current NEXUS system status and available capabilities.</p>
@@ -292,7 +302,7 @@
             </section>
 
 
-            <section id="knowledgeView" class="workspace-view" hidden>
+            <section id="knowledgeView" class="workspace-view" aria-label="Knowledge Base" hidden>
 
                 <div class="section-label">
                     KNOWLEDGE BASE
@@ -325,7 +335,7 @@
             </section>
 
 
-            <section id="activityView" class="workspace-view" hidden>
+            <section id="activityView" class="workspace-view" aria-label="Activity" hidden>
 
                 <div class="section-label">
                     ACTIVITY
@@ -342,10 +352,12 @@
                     <div
                         id="activity"
                         class="activity"
+                        role="status"
+                        aria-live="polite"
                     >
 
                         <div class="activity-empty">
-                            <span>◉</span>
+                            <span aria-hidden="true">◉</span>
                             Waiting for a task
                         </div>
 
@@ -372,29 +384,31 @@
 
                 <div class="input-box">
 
-                    <div class="input-status">
+                    <div class="input-status" aria-hidden="true">
                         <span class="input-dot"></span>
                     </div>
 
+                    <label for="messageInput" class="sr-only">Give NEXUS a task or question</label>
                     <input
                         id="messageInput"
                         type="text"
                         placeholder="Give NEXUS a task..."
                         autocomplete="off"
+                        aria-label="Give NEXUS a task"
                     >
 
                     <button
                         id="sendButton"
                         aria-label="Send message"
                     >
-                        ➜
+                        <span aria-hidden="true">➜</span>
                     </button>
 
                 </div>
 
                 <div class="input-hint">
                     ENTER to send
-                    <span>•</span>
+                    <span aria-hidden="true">•</span>
                     NEXUS can search its knowledge base
                 </div>
 

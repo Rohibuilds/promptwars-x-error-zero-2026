@@ -23,6 +23,13 @@ function addMessage(text, type) {
 
     messages.appendChild(message);
 
+    if (type !== "user") {
+        const announcer = document.getElementById("liveAnnouncer");
+        if (announcer) {
+            announcer.textContent = text;
+        }
+    }
+
     requestAnimationFrame(function() {
         const workspace = messages.closest(".workspace");
 
@@ -42,8 +49,8 @@ function setActivity(text) {
 
     activity.innerHTML = `
         <div class="activity-empty">
-            <span>◉</span>
-            ${text}
+            <span aria-hidden="true">◉</span>
+            ${escapeHtml(text)}
         </div>
     `;
 }
@@ -314,7 +321,7 @@ setActivity(
 
 const navItems = document.querySelectorAll(".nav-item");
 
-const assistantView = document.querySelector(".chat-section");
+const assistantView = document.getElementById("assistantView");
 const toolsView = document.getElementById("toolsView");
 const knowledgeView = document.getElementById("knowledgeView");
 const activityView = document.getElementById("activityView");
@@ -347,9 +354,11 @@ navItems.forEach(function(item) {
 
         navItems.forEach(function(nav) {
             nav.classList.remove("active");
+            nav.removeAttribute("aria-current");
         });
 
         item.classList.add("active");
+        item.setAttribute("aria-current", "page");
 
         const view = item.dataset.view;
 
