@@ -56,22 +56,22 @@
                     WORKSPACE
                 </div>
 
-                <button class="nav-item active">
+                <button class="nav-item active" data-view="assistant">
                     <span>◈</span>
                     AI Assistant
                 </button>
 
-                <button class="nav-item">
+                <button class="nav-item" data-view="tools">
                     <span>⌘</span>
                     Tools
                 </button>
 
-                <button class="nav-item">
+                <button class="nav-item" data-view="knowledge">
                     <span>▣</span>
                     Knowledge
                 </button>
 
-                <button class="nav-item">
+                <button class="nav-item" data-view="activity">
                     <span>◌</span>
                     Activity
                 </button>
@@ -242,7 +242,96 @@
                 </div>
 
 
-                <!-- ACTIVITY -->
+                <!-- MESSAGES -->
+
+                <div
+                    id="messages"
+                    class="messages"
+                ></div>
+
+
+            </section>
+
+
+
+            <!-- WORKSPACE PANELS -->
+
+            <section id="toolsView" class="workspace-view" hidden>
+
+                <div class="section-label">
+                    TOOLS
+                </div>
+
+                <div class="workspace-card">
+                    <div class="workspace-card-icon">⌘</div>
+                    <div>
+                        <strong>Knowledge Search</strong>
+                        <p>Searches the NEXUS knowledge base for relevant information.</p>
+                    </div>
+                    <span class="tool-status">READY</span>
+                </div>
+
+                <div class="workspace-card">
+                    <div class="workspace-card-icon">∑</div>
+                    <div>
+                        <strong>Calculator</strong>
+                        <p>Performs safe mathematical calculations from natural language requests.</p>
+                    </div>
+                    <span class="tool-status">READY</span>
+                </div>
+
+                <div class="workspace-card">
+                    <div class="workspace-card-icon">◉</div>
+                    <div>
+                        <strong>System Status</strong>
+                        <p>Checks the current NEXUS system status and available capabilities.</p>
+                    </div>
+                    <span class="tool-status">READY</span>
+                </div>
+
+            </section>
+
+
+            <section id="knowledgeView" class="workspace-view" hidden>
+
+                <div class="section-label">
+                    KNOWLEDGE BASE
+                </div>
+
+                <div class="workspace-card knowledge-card">
+                    <div>
+                        <strong>Electronics Laboratory</strong>
+                        <p>Block A, First Floor</p>
+                        <span>Oscilloscope · Function Generator · Digital Multimeter · DC Power Supply</span>
+                    </div>
+                </div>
+
+                <div class="workspace-card knowledge-card">
+                    <div>
+                        <strong>Computer Laboratory</strong>
+                        <p>Block B, Second Floor</p>
+                        <span>Desktop Computers · Networking Equipment · Projector</span>
+                    </div>
+                </div>
+
+                <div class="workspace-card knowledge-card">
+                    <div>
+                        <strong>Library</strong>
+                        <p>Main Academic Block</p>
+                        <span>9:00 AM to 6:00 PM</span>
+                    </div>
+                </div>
+
+            </section>
+
+
+            <section id="activityView" class="workspace-view" hidden>
+
+                <div class="section-label">
+                    ACTIVITY
+                </div>
+
+                                <!-- LIVE AGENT ACTIVITY -->
 
                 <div class="activity-section">
 
@@ -265,13 +354,14 @@
                 </div>
 
 
-                <!-- MESSAGES -->
-
-                <div
-                    id="messages"
-                    class="messages"
-                ></div>
-
+<div id="activityHistory" class="activity-history">
+                    <div class="workspace-card activity-empty-history">
+                        <div>
+                            <strong>No activity yet</strong>
+                            <p>Agent actions will appear here when NEXUS processes tasks.</p>
+                        </div>
+                    </div>
+                </div>
 
             </section>
 

@@ -30,8 +30,8 @@ def run_agent(message):
             "status": "completed",
             "tool": "system_status",
             "response": (
-                f"{status['name']} is {status['status']}\\n"
-                f"Version: {status['version']}\\n"
+                f"{status['name']} is {status['status']}\n"
+              f"Version: {status['version']}\n"
                 "Available tools: "
                 + ", ".join(status["tools"])
             )

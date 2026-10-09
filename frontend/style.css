@@ -846,3 +846,224 @@ input {
         padding-left: 4px;
     }
 }
+/* WORKSPACE VIEWS */
+
+.workspace-view {
+    margin-top: 28px;
+}
+
+.workspace-view[hidden] {
+    display: none;
+}
+
+.workspace-card {
+    display: flex;
+    align-items: center;
+    gap: 16px;
+    padding: 18px;
+    margin-bottom: 12px;
+    background: var(--panel);
+    border: 1px solid var(--border);
+    border-radius: 12px;
+    transition: border-color 0.2s ease, transform 0.2s ease;
+}
+
+.workspace-card:hover {
+    border-color: #354052;
+    transform: translateY(-1px);
+}
+
+.workspace-card-icon {
+    width: 42px;
+    height: 42px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-shrink: 0;
+    border: 1px solid var(--border);
+    border-radius: 10px;
+    color: var(--text);
+    font-size: 18px;
+}
+
+.workspace-card strong {
+    display: block;
+    color: var(--text);
+    font-size: 14px;
+    margin-bottom: 5px;
+}
+
+.workspace-card p {
+    color: var(--muted);
+    font-size: 13px;
+    line-height: 1.5;
+}
+
+.workspace-card span {
+    color: var(--soft);
+    font-size: 12px;
+    line-height: 1.5;
+}
+
+.tool-status {
+    margin-left: auto;
+    padding: 5px 9px;
+    border: 1px solid rgba(74, 222, 128, 0.25);
+    border-radius: 6px;
+    color: var(--green) !important;
+    font-size: 10px !important;
+    letter-spacing: 0.08em;
+}
+
+.knowledge-card {
+    align-items: flex-start;
+}
+
+.knowledge-card > div {
+    width: 100%;
+}
+
+.activity-history {
+    width: 100%;
+}
+
+@media (max-width: 700px) {
+
+    .workspace-card {
+        align-items: flex-start;
+    }
+
+    .tool-status {
+        margin-left: auto;
+    }
+
+}
+
+/* NEXUS WORKSPACE SCROLL FIX */
+
+.main {
+    min-width: 0;
+    min-height: 0;
+    overflow-y: auto;
+    overflow-x: hidden;
+}
+
+.main > * {
+    max-width: 100%;
+}
+
+.workspace-view {
+    padding-bottom: 40px;
+}
+
+.workspace-view[hidden] {
+    display: none !important;
+}
+
+
+/* =========================================================
+   RA NEXUS — MAIN LAYOUT FIX
+   ========================================================= */
+
+.main {
+    flex: 1;
+    min-width: 0;
+    min-height: 0;
+    height: 100vh;
+    display: flex;
+    flex-direction: column;
+    overflow: hidden;
+}
+
+.topbar {
+    flex-shrink: 0;
+}
+
+.workspace {
+    flex: 1;
+    min-height: 0;
+    overflow-y: auto;
+    overflow-x: hidden;
+    padding-bottom: 32px;
+}
+
+.workspace-view {
+    flex: 1;
+    min-height: 0;
+    overflow-y: auto;
+    overflow-x: hidden;
+    padding: 28px 40px 100px;
+}
+
+.input-wrapper {
+    flex-shrink: 0;
+}
+
+
+/* =========================================================
+   AGENT ACTIVITY HISTORY
+   ========================================================= */
+
+.activity-history-item {
+    position: relative;
+    align-items: flex-start;
+    animation: activityIn 0.35s ease both;
+}
+
+.activity-history-icon {
+    width: 10px;
+    height: 10px;
+    margin-top: 5px;
+    flex-shrink: 0;
+    border-radius: 50%;
+    background: var(--green);
+    box-shadow: 0 0 12px rgba(74, 222, 128, 0.45);
+    font-size: 0;
+}
+
+.activity-history-content {
+    min-width: 0;
+}
+
+.activity-history-content strong {
+    color: var(--green);
+    font-size: 10px;
+    letter-spacing: 0.12em;
+}
+
+.activity-history-content p {
+    margin-top: 7px;
+    color: var(--text);
+    font-size: 13px;
+    word-break: break-word;
+}
+
+.activity-history-content span {
+    display: block;
+    margin-top: 7px;
+    color: var(--soft);
+    font-size: 11px;
+}
+
+.activity-history-content small {
+    display: block;
+    margin-top: 5px;
+    color: var(--muted);
+    font-size: 11px;
+    line-height: 1.5;
+    word-break: break-word;
+}
+
+@keyframes activityIn {
+
+    from {
+        opacity: 0;
+        transform: translateY(8px);
+    }
+
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+
+}
