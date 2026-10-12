@@ -1,0 +1,237 @@
+{
+  "source": "User-provided Sapthagiri NPS University Electronics Cycle Time Table details",
+  "institution": "Sapthagiri NPS University",
+  "school": "School of Engineering & Technology",
+  "department": "Department of Electronics and Communication Engineering",
+  "schedule_title": "Electronics Cycle Time Table w.e.f. 07.09.2026",
+  "academic_year": "2026-27",
+  "semester": "I",
+  "section": "1ECE02",
+  "term_start": "2026-09-07",
+  "term_end": "2027-01-05",
+  "schedule_day_labels": {
+    "note": "The five rows were supplied as Day 1–Day 5. Weekday names are not established by the supplied text.",
+    "days": [
+      "Day 1",
+      "Day 2",
+      "Day 3",
+      "Day 4",
+      "Day 5"
+    ]
+  },
+  "periods": [
+    {
+      "label": "Period 1",
+      "start": "08:30",
+      "end": "09:30"
+    },
+    {
+      "label": "Period 2",
+      "start": "09:30",
+      "end": "10:30"
+    },
+    {
+      "label": "Tea Break",
+      "start": "10:30",
+      "end": "10:45"
+    },
+    {
+      "label": "Period 3",
+      "start": "10:45",
+      "end": "11:45"
+    },
+    {
+      "label": "Period 4",
+      "start": "11:45",
+      "end": "12:45"
+    },
+    {
+      "label": "Lunch Break / Period 5",
+      "start": "12:45",
+      "end": "13:45"
+    },
+    {
+      "label": "Period 6",
+      "start": "13:45",
+      "end": "14:40"
+    },
+    {
+      "label": "Period 7",
+      "start": "14:40",
+      "end": "15:30"
+    }
+  ],
+  "courses": [
+    {
+      "code": "25BEELY101",
+      "name": "Mathematics I",
+      "short_code": "MAT",
+      "faculty": "Mrs. Dhanalakshmi R"
+    },
+    {
+      "code": "25BEELY102",
+      "name": "Mechanical Engineering Science",
+      "short_code": "MES",
+      "faculty": "Dr Manjunatha G"
+    },
+    {
+      "code": "25BEELY103",
+      "name": "Renewable Energy Sources",
+      "short_code": "RES",
+      "faculty": "Mrs. Monica M S"
+    },
+    {
+      "code": "25BEELY104",
+      "name": "Problem Solving Using C",
+      "short_code": "PSC",
+      "faculty": "CSE Faculty"
+    },
+    {
+      "code": "25BEELY105",
+      "name": "Basics of Electronics Engineering",
+      "short_code": "BEC",
+      "faculty": "Mrs. Mamatha H"
+    },
+    {
+      "code": "25BEELY106",
+      "name": "Environmental Science and Engineering",
+      "short_code": "ENVS",
+      "faculty": "Dr. Sangeetha Mulgund"
+    },
+    {
+      "code": "25BEELY107",
+      "name": "Communicative English",
+      "short_code": "ENG",
+      "faculty": "HRD Trainer"
+    },
+    {
+      "code": "25BEELY108",
+      "name": "Indian Constitution",
+      "short_code": "ICN",
+      "faculty": "Mrs. Arshitha B"
+    },
+    {
+      "code": "25BEELY109A / 25BEELY109B",
+      "name": "Kannada Samskruthi / Kali Kannada",
+      "short_code": "KAN",
+      "faculty": "Dr. Sujata M Awate"
+    },
+    {
+      "code": "25BEELY101",
+      "name": "Mathematics Lab",
+      "short_code": "MATL",
+      "faculty": "B1: Mrs. Dhanalakshmi R; B2: Dr. Lakshmi M S"
+    },
+    {
+      "code": "25BEELY104",
+      "name": "Problem Solving Using C Lab",
+      "short_code": "PSCL",
+      "faculty": "Not provided"
+    },
+    {
+      "code": "25BEELY105",
+      "name": "Basics of Electronics Engineering Lab",
+      "short_code": "BECL",
+      "faculty": "B1: Ms. Mamatha H; B2: Ms. Netravathi"
+    },
+    {
+      "code": "N/A",
+      "name": "Class Advisor Meeting",
+      "short_code": "CAM",
+      "faculty": "N/A"
+    }
+  ],
+  "room_day_entries": [
+    {
+      "day": "Day 1",
+      "room": "A1204",
+      "subjects": [
+        "RES",
+        "BEC"
+      ]
+    },
+    {
+      "day": "Day 1",
+      "room": "A1203",
+      "subjects": [
+        "ENG"
+      ]
+    },
+    {
+      "day": "Day 1",
+      "room": "A1210/A1223",
+      "subjects": [
+        "MATL"
+      ]
+    },
+    {
+      "day": "Day 2",
+      "room": "A1204",
+      "subjects": [
+        "PSC",
+        "KAN",
+        "MAT",
+        "MES"
+      ],
+      "afternoon_classes_scheduled": false
+    },
+    {
+      "day": "Day 3",
+      "room": "A201/A204",
+      "subjects": [
+        "BECL"
+      ]
+    },
+    {
+      "day": "Day 3",
+      "room": "A1209",
+      "subjects": [
+        "ICN",
+        "PSC"
+      ]
+    },
+    {
+      "day": "Day 3",
+      "room": "A1211",
+      "subjects": [
+        "ENVS",
+        "RES"
+      ]
+    },
+    {
+      "day": "Day 4",
+      "room": "A1204",
+      "subjects": [
+        "MAT",
+        "MES",
+        "BEC",
+        "CAM"
+      ]
+    },
+    {
+      "day": "Day 4",
+      "room": "A1210/A1223",
+      "subjects": [
+        "PSCL"
+      ]
+    },
+    {
+      "day": "Day 5",
+      "room": "A1204",
+      "subjects": [
+        "MES",
+        "PSC",
+        "RES",
+        "MAT"
+      ],
+      "afternoon_classes_scheduled": false
+    }
+  ],
+  "notes": [
+    "LIB means Library Hours.",
+    "SPORTS means Physical Education.",
+    "Exact subject-to-period assignments were not included in the supplied text and must not be inferred.",
+    "Weekday names for Day 1 through Day 5 were not included in the supplied text and must not be inferred.",
+    "For lab rooms with two possible rooms or batch-based allocations, preserve both room values unless a batch-specific source clarifies the correct room."
+  ]
+}
