@@ -1139,3 +1139,85 @@ a:focus-visible {
 }
 
 
+
+
+/* RA NEXUS college assistant refinements */
+:root {
+    --bg: #080d16;
+    --panel: #0d1522;
+    --panel-light: #121e2e;
+    --border: #243247;
+    --text: #f4f7fb;
+    --muted: #91a0b5;
+    --soft: #bdc9d8;
+    --accent: #8bd5ff;
+    --green: #72e0b0;
+}
+body {
+    background:
+        radial-gradient(ellipse at 75% -10%, rgba(47, 112, 171, .16), transparent 38%),
+        var(--bg);
+}
+.sidebar { background: rgba(8, 14, 24, .97); }
+.brand-logo {
+    background: linear-gradient(145deg, #e5f7ff, #82c9f5);
+    box-shadow: 0 5px 22px rgba(91, 185, 241, .16);
+}
+.system-card, .hero, .quick-card, .workspace-card, .input-box {
+    box-shadow: 0 10px 28px rgba(0, 0, 0, .10);
+}
+.hero {
+    background:
+        radial-gradient(circle at 0% 50%, rgba(112, 198, 255, .10), transparent 40%),
+        linear-gradient(135deg, #0d1726, #0a111c);
+}
+.hero h3 { line-height: 1.2; }
+.hero h3 span { color: #8bd5ff; }
+.quick-card { min-height: 102px; }
+.quick-icon { color: #a8dcff; background: #17283a; }
+.nav-item.active {
+    background: linear-gradient(90deg, rgba(87, 164, 222, .14), rgba(87, 164, 222, .04));
+    border-color: #2c4964;
+}
+.input-wrapper {
+    background: linear-gradient(180deg, rgba(8, 13, 22, 0), rgba(8, 13, 22, .98) 24%);
+}
+.input-box {
+    border-color: #30445c;
+    background: #101a28;
+}
+#messageInput::placeholder { color: #8293a8; }
+#sendButton {
+    background: linear-gradient(145deg, #d9f2ff, #86c9f4);
+    color: #07111d;
+    border-radius: 9px;
+}
+.message { line-height: 1.65; overflow-wrap: anywhere; }
+[hidden] { display: none !important; }
+@media (min-width: 769px) {
+    .sidebar { width: 248px; }
+    .workspace { padding-top: 32px; }
+    .quick-grid { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+}
+@media (max-width: 768px) {
+    .sidebar { padding: 14px 14px 10px; }
+    .sidebar-brand { padding: 2px 4px 14px; }
+    .system-card { margin-bottom: 14px; }
+    .navigation { display: grid; grid-template-columns: repeat(4, minmax(0, 1fr)); gap: 5px; }
+    .nav-title { grid-column: 1 / -1; padding: 0 4px 4px; }
+    .nav-item { justify-content: center; gap: 5px; padding: 10px 5px; font-size: 11px; }
+    .nav-item span { width: auto; }
+    .sidebar-bottom { display: none; }
+    .topbar { height: 64px; padding: 0 18px; }
+    .workspace { padding: 22px 16px 150px; }
+    .hero { align-items: flex-start; gap: 14px; padding: 19px; margin-bottom: 26px; }
+    .hero-icon { width: 46px; height: 46px; }
+    .hero h3 { font-size: 22px; }
+    .hero p { font-size: 13px; }
+    .quick-grid { grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 9px; }
+    .quick-card { min-height: 100px; padding: 12px; flex-direction: column; gap: 8px; }
+    .quick-card strong { font-size: 12px; }
+    .quick-card span { font-size: 11px; line-height: 1.4; }
+    .input-wrapper { position: sticky; bottom: 0; padding: 12px 14px max(12px, env(safe-area-inset-bottom)); }
+    .input-hint { font-size: 10px; }
+}
