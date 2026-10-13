@@ -3,4 +3,5 @@ uvicorn==0.39.0
 pydantic==2.13.5
 httpx==0.28.1
 pytest==8.3.4
+openpyxl==3.1.5
 

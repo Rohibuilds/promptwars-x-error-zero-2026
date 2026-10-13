@@ -7,11 +7,13 @@ import logging
 import math
 import operator
 from pathlib import Path
-from typing import Any, Dict, List
+from typing import Any, Dict, List, Optional
+from .timetable_engine import TimetableEngine
 
 logger = logging.getLogger("ra_nexus.tools")
 
 DATA_FILE = Path(__file__).parent.parent / "data" / "knowledge.json"
+_default_timetable_engine = TimetableEngine()
 
 
 @lru_cache(maxsize=1)
@@ -165,6 +167,24 @@ def calculate(expression: str) -> Dict[str, Any]:
 
 
 
+def query_timetable(
+    query: str,
+    student_context: Optional[Dict[str, Any]] = None,
+    client_time: Optional[str] = None
+) -> Dict[str, Any]:
+    """Queries the university timetable engine with deterministic section isolation.
+
+    Args:
+        query: User's timetable or schedule query.
+        student_context: Optional student branch, semester, and section information.
+        client_time: Optional ISO timestamp from client for temporal queries.
+
+    Returns:
+        Dict[str, Any]: Engine response payload.
+    """
+    return _default_timetable_engine.query_schedule(query, student_context, client_time=client_time)
+
+
 def get_system_status() -> Dict[str, Any]:
     """Returns current system health status, version, and loaded capabilities.
     
@@ -173,11 +193,13 @@ def get_system_status() -> Dict[str, Any]:
     """
     return {
         "name": "RA NEXUS",
+        "institution": "Sapthagiri NPS University",
         "version": "0.1.0",
         "status": "online",
         "tools": [
             "knowledge_search",
             "calculator",
+            "timetable_engine",
             "system_status"
         ]
     }

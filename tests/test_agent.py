@@ -35,6 +35,26 @@ class TestAgent(unittest.TestCase):
         self.assertEqual(response["status"], "completed")
         self.assertIn("RA NEXUS", response["response"])
 
+    def test_timetable_intent(self):
+        """Test asking timetable questions routed to timetable engine."""
+        response = run_agent("Where is my next class?")
+        self.assertEqual(response["type"], "timetable")
+        self.assertEqual(response["status"], "context_required")
+
+    def test_timetable_intent_with_section(self):
+        """Test asking timetable with section 1ECE02."""
+        response = run_agent("What is the timetable for section 1ECE02?")
+        self.assertEqual(response["type"], "timetable")
+        self.assertEqual(response["status"], "schedule_pending")
+        self.assertIn("1ECE02", response["response"])
+
+    def test_library_timing_not_sent_to_calculator(self):
+        """Test 'What is the library timing?' routes to knowledge search, not calculator."""
+        response = run_agent("What is the library timing?")
+        self.assertEqual(response["type"], "knowledge")
+        self.assertEqual(response["status"], "completed")
+        self.assertIn("9:00 AM to 6:00 PM", response["response"])
+
     def test_extract_expression(self):
         """Test natural language to math expression conversion."""
         self.assertEqual(extract_expression("Calculate 10 plus 5"), "10 + 5")

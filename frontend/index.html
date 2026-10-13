@@ -1,426 +1,814 @@
 <!DOCTYPE html>
 <html lang="en">
-
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta name="description" content="RA NEXUS - Autonomous AI Agent Command Center for campus information, tools, and smart assistance.">
-
-    <title>RA NEXUS | Autonomous AI</title>
-
+    <meta name="description" content="RA NEXUS - Official Autonomous Digital Assistant for Sapthagiri NPS University. Timetable lookups, campus facilities, classrooms, and academic assistance.">
+    <title>RA NEXUS | Sapthagiri NPS University</title>
     <link rel="stylesheet" href="style.css">
 </head>
-
 <body>
-
     <a href="#main-content" class="skip-link">Skip to main content</a>
 
-    <div class="app">
-
-        <!-- SIDEBAR -->
-
-        <aside class="sidebar" aria-label="Sidebar navigation">
-
-            <div class="sidebar-brand">
-
-                <div class="brand-logo" aria-hidden="true">
-                    RA
+    <div class="app-layout">
+        <!-- TOP APP BAR -->
+        <header class="app-header" role="banner">
+            <div class="header-left">
+                <button id="mobileMenuToggle" class="icon-button mobile-menu-btn" aria-label="Toggle navigation menu" aria-expanded="false" aria-controls="appSidebar">
+                    <span class="menu-bar"></span>
+                    <span class="menu-bar"></span>
+                    <span class="menu-bar"></span>
+                </button>
+                <div class="university-branding">
+                    <div class="university-crest" aria-hidden="true">
+                        <span>SNPSU</span>
+                    </div>
+                    <div class="university-titles">
+                        <span class="university-name">Sapthagiri NPS University</span>
+                        <h1 class="portal-name">RA NEXUS <span class="badge-sub">by RA TECH</span></h1>
+                    </div>
                 </div>
-
-                <div>
-                    <h1>RA NEXUS</h1>
-                    <span>AUTONOMOUS AI</span>
-                </div>
-
             </div>
 
+            <div class="header-right">
+                <button id="headerProfileBadge" class="profile-chip" aria-label="Edit student profile context" title="Click to change academic profile">
+                    <span class="profile-chip-icon" aria-hidden="true">🎓</span>
+                    <div class="profile-chip-text">
+                        <span class="profile-chip-label">Student Context</span>
+                        <strong id="headerProfileText" class="profile-chip-val">ECE • 1ECE02</strong>
+                    </div>
+                    <span class="chip-status-tag" id="headerProfileTag">Provisional</span>
+                </button>
 
-            <div class="system-card">
-
-                <div class="system-header">
-                    <span class="pulse" aria-hidden="true"></span>
-                    SYSTEM ONLINE
+                <div class="system-status-indicator" id="systemHealthBadge" role="status" aria-label="System status online">
+                    <span class="status-pulse-dot" aria-hidden="true"></span>
+                    <span class="status-text" id="systemHealthText">Systems Online</span>
                 </div>
-
-                <div class="system-value">
-                    NEXUS CORE
-                </div>
-
-                <div class="system-sub">
-                    Agent Engine v0.1
-                </div>
-
             </div>
-
-
-            <nav class="navigation" aria-label="Workspace navigation">
-
-                <div class="nav-title">
-                    WORKSPACE
-                </div>
-
-                <button class="nav-item active" data-view="assistant" aria-current="page">
-                    <span aria-hidden="true">◈</span>
-                    AI Assistant
-                </button>
-
-                <button class="nav-item" data-view="tools">
-                    <span aria-hidden="true">⌘</span>
-                    Tools
-                </button>
-
-                <button class="nav-item" data-view="knowledge">
-                    <span aria-hidden="true">▣</span>
-                    Knowledge
-                </button>
-
-                <button class="nav-item" data-view="activity">
-                    <span aria-hidden="true">◌</span>
-                    Activity
-                </button>
-
-            </nav>
-
-
-            <div class="sidebar-bottom">
-
-                <div class="version">
-                    RA NEXUS
-                    <span>v0.1.0</span>
-                </div>
-
-                <div class="ra-tech">
-                    POWERED BY
-                    <strong>RA TECH</strong>
-                </div>
-
-            </div>
-
-        </aside>
-
-
-        <!-- MAIN -->
-
-        <main class="main" id="main-content" role="main" tabindex="-1">
-
-            <header class="topbar">
-
-                <div>
-
-                    <div class="page-label">
-                        AUTONOMOUS AGENT
-                    </div>
-
-                    <h2>Command Center</h2>
-
-                </div>
-
-
-                <div class="top-status">
-
-                    <span class="status-dot" aria-hidden="true"></span>
-
-                    <span>
-                        ONLINE
-                    </span>
-
-                </div>
-
-            </header>
-
-
-            <section id="assistantView" class="workspace" aria-label="Assistant Workspace">
-
-
-
-                <!-- WELCOME -->
-
-                <div class="hero">
-
-                    <div class="hero-icon" aria-hidden="true">
-                        N
-                    </div>
-
-                    <div>
-
-                        <div class="eyebrow">
-                            RA NEXUS CORE
-                        </div>
-
-                        <h3>
-                            Understand.
-                            <span>Decide.</span>
-                            Act.
-                        </h3>
-
-                        <p>
-                            An autonomous AI agent designed to understand
-                            problems, select tools and produce useful results.
-                        </p>
-
-                    </div>
-
-                </div>
-
-
-                <!-- QUICK ACTIONS -->
-
-                <div class="quick-section">
-
-                    <div class="section-label">
-                        QUICK ACTIONS
-                    </div>
-
-
-                    <div class="quick-grid">
-
-                        <button
-                            class="quick-card"
-                            data-message="Where is the electronics laboratory?"
-                        >
-
-                            <div class="quick-icon" aria-hidden="true">
-                                ⌖
-                            </div>
-
-                            <div>
-                                <strong>Find Location</strong>
-                                <span>Search the knowledge base</span>
-                            </div>
-
-                        </button>
-
-
-                        <button
-                            class="quick-card"
-                            data-message="What equipment is available in the electronics laboratory?"
-                        >
-
-                            <div class="quick-icon" aria-hidden="true">
-                                ⚙
-                            </div>
-
-                            <div>
-                                <strong>Find Equipment</strong>
-                                <span>Discover available resources</span>
-                            </div>
-
-                        </button>
-
-
-                        <button
-                            class="quick-card"
-                            data-message="What are the library timings?"
-                        >
-
-                            <div class="quick-icon" aria-hidden="true">
-                                ◷
-                            </div>
-
-                            <div>
-                                <strong>Check Timings</strong>
-                                <span>Get facility information</span>
-                            </div>
-
-                        </button>
-
-
-                        <button
-                            class="quick-card"
-                            data-message="What can you help me with?"
-                        >
-
-                            <div class="quick-icon" aria-hidden="true">
-                                ✦
-                            </div>
-
-                            <div>
-                                <strong>Explore NEXUS</strong>
-                                <span>Discover capabilities</span>
-                            </div>
-
-                        </button>
-
-                    </div>
-
-                </div>
-
-
-                <!-- MESSAGES -->
-
-                <div id="liveAnnouncer" class="sr-only" role="status" aria-live="polite" aria-atomic="true"></div>
-
-                <div
-                    id="messages"
-                    class="messages"
-                    role="log"
-                    aria-label="Conversation history"
-                    aria-relevant="additions text"
-                ></div>
-
-
-
-            </section>
-
-
-
-            <!-- WORKSPACE PANELS -->
-
-            <section id="toolsView" class="workspace-view" aria-label="Tools" hidden>
-
-                <div class="section-label">
-                    TOOLS
-                </div>
-
-                <div class="workspace-card">
-                    <div class="workspace-card-icon" aria-hidden="true">⌘</div>
-                    <div>
-                        <strong>Knowledge Search</strong>
-                        <p>Searches the NEXUS knowledge base for relevant information.</p>
-                    </div>
-                    <span class="tool-status">READY</span>
-                </div>
-
-                <div class="workspace-card">
-                    <div class="workspace-card-icon" aria-hidden="true">∑</div>
-                    <div>
-                        <strong>Calculator</strong>
-                        <p>Performs safe mathematical calculations from natural language requests.</p>
-                    </div>
-                    <span class="tool-status">READY</span>
-                </div>
-
-                <div class="workspace-card">
-                    <div class="workspace-card-icon" aria-hidden="true">◉</div>
-                    <div>
-                        <strong>System Status</strong>
-                        <p>Checks the current NEXUS system status and available capabilities.</p>
-                    </div>
-                    <span class="tool-status">READY</span>
-                </div>
-
-            </section>
-
-
-            <section id="knowledgeView" class="workspace-view" aria-label="Knowledge Base" hidden>
-
-                <div class="section-label">
-                    KNOWLEDGE BASE
-                </div>
-
-                <div class="workspace-card knowledge-card">
-                    <div>
-                        <strong>Electronics Laboratory</strong>
-                        <p>Block A, First Floor</p>
-                        <span>Oscilloscope · Function Generator · Digital Multimeter · DC Power Supply</span>
-                    </div>
-                </div>
-
-                <div class="workspace-card knowledge-card">
-                    <div>
-                        <strong>Computer Laboratory</strong>
-                        <p>Block B, Second Floor</p>
-                        <span>Desktop Computers · Networking Equipment · Projector</span>
-                    </div>
-                </div>
-
-                <div class="workspace-card knowledge-card">
-                    <div>
-                        <strong>Library</strong>
-                        <p>Main Academic Block</p>
-                        <span>9:00 AM to 6:00 PM</span>
-                    </div>
-                </div>
-
-            </section>
-
-
-            <section id="activityView" class="workspace-view" aria-label="Activity" hidden>
-
-                <div class="section-label">
-                    ACTIVITY
-                </div>
-
-                                <!-- LIVE AGENT ACTIVITY -->
-
-                <div class="activity-section">
-
-                    <div class="section-label">
-                        AGENT ACTIVITY
-                    </div>
-
-                    <div
-                        id="activity"
-                        class="activity"
-                        role="status"
-                        aria-live="polite"
-                    >
-
-                        <div class="activity-empty">
-                            <span aria-hidden="true">◉</span>
-                            Waiting for a task
-                        </div>
-
-                    </div>
-
-                </div>
-
-
-<div id="activityHistory" class="activity-history">
-                    <div class="workspace-card activity-empty-history">
-                        <div>
-                            <strong>No activity yet</strong>
-                            <p>Agent actions will appear here when NEXUS processes tasks.</p>
-                        </div>
-                    </div>
-                </div>
-
-            </section>
-
-
-            <!-- INPUT -->
-
-            <div class="input-wrapper">
-
-                <div class="input-box">
-
-                    <div class="input-status" aria-hidden="true">
-                        <span class="input-dot"></span>
-                    </div>
-
-                    <label for="messageInput" class="sr-only">Give NEXUS a task or question</label>
-                    <input
-                        id="messageInput"
-                        type="text"
-                        placeholder="Give NEXUS a task..."
-                        autocomplete="off"
-                        aria-label="Give NEXUS a task"
-                    >
-
-                    <button
-                        id="sendButton"
-                        aria-label="Send message"
-                    >
-                        <span aria-hidden="true">➜</span>
+        </header>
+
+        <div class="app-body">
+            <!-- SIDE NAVIGATION -->
+            <aside class="app-sidebar" id="appSidebar" aria-label="Main Navigation">
+                <nav class="sidebar-nav">
+                    <div class="nav-section-label">WORKSPACE</div>
+                    <button class="nav-tab active" data-view="dashboard" aria-current="page">
+                        <span class="nav-icon" aria-hidden="true">🏛</span>
+                        <span class="nav-label">Dashboard</span>
+                    </button>
+                    <button class="nav-tab" data-view="timetable">
+                        <span class="nav-icon" aria-hidden="true">📅</span>
+                        <span class="nav-label">Timetable</span>
+                    </button>
+                    <button class="nav-tab" data-view="directory">
+                        <span class="nav-icon" aria-hidden="true">🏢</span>
+                        <span class="nav-label">Campus Directory</span>
+                    </button>
+                    <button class="nav-tab" data-view="chat">
+                        <span class="nav-icon" aria-hidden="true">💬</span>
+                        <span class="nav-label">AI Assistant</span>
+                    </button>
+                    <button class="nav-tab" data-view="about">
+                        <span class="nav-icon" aria-hidden="true">ℹ️</span>
+                        <span class="nav-label">About NEXUS</span>
                     </button>
 
+                    <div class="nav-section-label">CONFIGURATION</div>
+                    <button class="nav-tab" data-view="profile">
+                        <span class="nav-icon" aria-hidden="true">👤</span>
+                        <span class="nav-label">Student Profile</span>
+                    </button>
+                    <button class="nav-tab" data-view="system">
+                        <span class="nav-icon" aria-hidden="true">⚙</span>
+                        <span class="nav-label">System Diagnostics</span>
+                    </button>
+                </nav>
+
+                <div class="sidebar-footer">
+                    <div class="institution-meta">
+                        <strong>Sapthagiri NPS University</strong>
+                        <span>Academic Services Portal</span>
+                    </div>
+                    <div class="brand-meta">
+                        <span>Brand: <strong>RA TECH</strong></span>
+                    </div>
+                    <div class="version-tag">
+                        <span>RA NEXUS Core</span>
+                        <span>v0.1.0</span>
+                    </div>
                 </div>
+            </aside>
 
-                <div class="input-hint">
-                    ENTER to send
-                    <span aria-hidden="true">•</span>
-                    NEXUS can search its knowledge base
-                </div>
+            <!-- MAIN CONTENT AREA -->
+            <main class="main-content" id="main-content" role="main" tabindex="-1">
+                <!-- VIEW 1: DASHBOARD -->
+                <section id="dashboardView" class="view-panel" aria-label="Dashboard Overview">
+                    <div class="panel-hero">
+                        <div class="hero-badge">OFFICIAL UNIVERSITY DIGITAL ASSISTANT</div>
+                        <h2 class="hero-title">Welcome to RA NEXUS</h2>
+                        <p class="hero-description">
+                            Your verified academic companion at Sapthagiri NPS University. Get verified answers for class timetables, laboratory facilities, classrooms, library timings, and institutional services.
+                        </p>
 
-            </div>
+                        <!-- Natural Language Search/Launch Input -->
+                        <div class="dashboard-search-container">
+                            <label for="dashboardSearchInput" class="sr-only">Ask RA NEXUS about timetables, facilities, or subjects</label>
+                            <div class="dashboard-search-bar">
+                                <span class="search-icon" aria-hidden="true">🔍</span>
+                                <input type="text" id="dashboardSearchInput" placeholder="Ask about your next class, library hours, labs, or rooms..." autocomplete="off">
+                                <button id="dashboardSearchBtn" class="primary-button" aria-label="Submit search to assistant">Ask Assistant</button>
+                            </div>
+                        </div>
+                    </div>
 
-        </main>
+                    <!-- ACTIVE PROFILE ADVISORY -->
+                    <div class="profile-banner-card" id="dashboardProfileCard">
+                        <div class="banner-icon" aria-hidden="true">ℹ️</div>
+                        <div class="banner-content">
+                            <div class="banner-header">
+                                <strong>Active Academic Profile: <span id="dashProfileTitle">ECE — Section 1ECE02</span></strong>
+                                <span class="status-badge amber" id="dashProfileStatus">Provisional Registration</span>
+                            </div>
+                            <p id="dashProfileDesc">
+                                Currently configured for ECE Section 1ECE02. Timetable records for this section are registered; detailed period timings and weekday day-by-day schedules are pending official publication.
+                            </p>
+                        </div>
+                        <button class="secondary-button" id="dashChangeProfileBtn">Change Profile</button>
+                    </div>
 
+                    <!-- SUGGESTED QUESTIONS -->
+                    <div class="section-container">
+                        <h3 class="section-heading">Suggested Academic Questions</h3>
+                        <p class="section-subtext">Click any question to get an immediate, verified answer.</p>
+                        <div class="quick-chips-grid">
+                            <button class="chip-card" data-query="Where is the electronics laboratory?">
+                                <span class="chip-icon" aria-hidden="true">🔬</span>
+                                <div class="chip-content">
+                                    <strong>Electronics Laboratory</strong>
+                                    <span>Location and equipment details</span>
+                                </div>
+                            </button>
+                            <button class="chip-card" data-query="What are the library timings?">
+                                <span class="chip-icon" aria-hidden="true">📚</span>
+                                <div class="chip-content">
+                                    <strong>Library Hours</strong>
+                                    <span>Operating schedule & main block</span>
+                                </div>
+                            </button>
+                            <button class="chip-card" data-query="Where is the computer laboratory?">
+                                <span class="chip-icon" aria-hidden="true">💻</span>
+                                <div class="chip-content">
+                                    <strong>Computer Laboratory</strong>
+                                    <span>Block B, Second Floor facility</span>
+                                </div>
+                            </button>
+                            <button class="chip-card" data-query="Show timetable for section 1ECE02">
+                                <span class="chip-icon" aria-hidden="true">📅</span>
+                                <div class="chip-content">
+                                    <strong>Section 1ECE02 Timetable</strong>
+                                    <span>Check current registered schedule</span>
+                                </div>
+                            </button>
+                            <button class="chip-card" data-query="Where is my next class?">
+                                <span class="chip-icon" aria-hidden="true">⏰</span>
+                                <div class="chip-content">
+                                    <strong>Next Class Lookup</strong>
+                                    <span>Real-time schedule resolution</span>
+                                </div>
+                            </button>
+                            <button class="chip-card" data-query="Calculate 45 * 12 + 150">
+                                <span class="chip-icon" aria-hidden="true">🔢</span>
+                                <div class="chip-content">
+                                    <strong>Academic Calculator</strong>
+                                    <span>Safe AST-based calculation</span>
+                                </div>
+                            </button>
+                        </div>
+                    </div>
+
+                    <!-- DIRECTORY & SERVICES SHORTCUTS -->
+                    <div class="section-container">
+                        <h3 class="section-heading">Core Portals</h3>
+                        <div class="portal-cards-grid">
+                            <div class="portal-card">
+                                <div class="portal-card-header">
+                                    <span class="portal-icon" aria-hidden="true">📅</span>
+                                    <h4>Timetable Center</h4>
+                                </div>
+                                <p>View registered class schedules, verified subject details, and room allocations by section, day, and batch.</p>
+                                <button class="text-link-button" data-switch="timetable">Open Timetable →</button>
+                            </div>
+                            <div class="portal-card">
+                                <div class="portal-card-header">
+                                    <span class="portal-icon" aria-hidden="true">🏢</span>
+                                    <h4>Campus Directory</h4>
+                                </div>
+                                <p>Search verified academic blocks, specialized research laboratories, computer centers, and library hours.</p>
+                                <button class="text-link-button" data-switch="directory">Explore Facilities →</button>
+                            </div>
+                            <div class="portal-card">
+                                <div class="portal-card-header">
+                                    <span class="portal-icon" aria-hidden="true">💬</span>
+                                    <h4>Interactive Assistant</h4>
+                                </div>
+                                <p>Consult the natural language assistant for academic questions, facility directions, or system checks.</p>
+                                <button class="text-link-button" data-switch="chat">Launch Assistant →</button>
+                            </div>
+                            <div class="portal-card">
+                                <div class="portal-card-header">
+                                    <span class="portal-icon" aria-hidden="true">ℹ️</span>
+                                    <h4>About RA NEXUS</h4>
+                                </div>
+                                <p>Learn about RA TECH architecture, AST-sandboxed computation, and strict section data boundaries.</p>
+                                <button class="text-link-button" data-switch="about">Learn More →</button>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- INSTITUTIONAL DATA TRANSPARENCY NOTICE -->
+                    <div class="transparency-card">
+                        <div class="transparency-header">
+                            <span class="shield-icon" aria-hidden="true">🛡</span>
+                            <strong>Institutional Data Integrity Policy</strong>
+                        </div>
+                        <p>
+                            Sapthagiri NPS University RA NEXUS operates strictly on verified academic and campus records. The current repository contains verified provisional registration for ECE Section 1ECE02. Official schedules for all remaining branches and sections will be incorporated as authenticated by respective department heads. The assistant will never fabricate, guess, or substitute unverified timetable entries.
+                        </p>
+                    </div>
+                </section>
+
+                <!-- VIEW 2: TIMETABLE VIEW -->
+                <section id="timetableView" class="view-panel" aria-label="Academic Timetable" hidden>
+                    <div class="panel-header">
+                        <div>
+                            <div class="panel-category">ACADEMIC SCHEDULE</div>
+                            <h2 class="panel-title">University Timetable</h2>
+                        </div>
+                        <div class="panel-actions">
+                            <button id="timetableNextClassBtn" class="primary-button">
+                                <span aria-hidden="true">⏰</span> Check Current / Next Class
+                            </button>
+                        </div>
+                    </div>
+
+                    <!-- STAGING STATUS & DATA ISOLATION ADVISORY -->
+                    <div class="staging-advisory-banner" id="timetableStagingBanner" role="note" aria-label="Timetable Staging Status">
+                        <div class="staging-banner-header">
+                            <span class="advisory-pill">DEVELOPMENT PREVIEW &bull; ISOLATED STAGING</span>
+                            <span class="staging-tag" id="timetableStagingStatusBadge">Pending Review</span>
+                        </div>
+                        <p class="staging-banner-desc">
+                            <strong>Official Workbook Pipeline (Stage 5B):</strong> 75 first-year sections and 2,682 schedule records have been extracted from the official workbook (<code>SOET TT(EC &amp; PC) as on 18_9_26.xlsx</code>) and staged in isolation. Staged records remain pending formal administrative review and are <strong>not</strong> promoted to the live student view.
+                        </p>
+                        <div class="staging-meta-row">
+                            <span>Staged Sections: <strong id="ttStagedSectionsCount">75</strong></span>
+                            <span>Extracted Entries: <strong id="ttStagedEntriesCount">2,682</strong></span>
+                            <span>Active Live Catalog: <strong>1ECE02 (Provisional)</strong></span>
+                            <span>Production Database: <strong class="text-green">Unaffected &amp; Isolated</strong></span>
+                        </div>
+                    </div>
+
+                    <!-- TIMETABLE FILTERS -->
+                    <div class="filters-card">
+                        <div class="filters-grid">
+                            <div class="filter-group">
+                                <label for="ttBranchSelect">Branch</label>
+                                <select id="ttBranchSelect" class="form-select">
+                                    <option value="ECE">Electronics & Communication (ECE)</option>
+                                    <option value="CSE">Computer Science (CSE)</option>
+                                    <option value="ISE">Information Science (ISE)</option>
+                                    <option value="MECH">Mechanical Engineering (MECH)</option>
+                                    <option value="CIVIL">Civil Engineering (CIVIL)</option>
+                                </select>
+                            </div>
+                            <div class="filter-group">
+                                <label for="ttSectionSelect">Section</label>
+                                <select id="ttSectionSelect" class="form-select">
+                                    <option value="1ECE02">1ECE02 (Registered • Provisional)</option>
+                                </select>
+                            </div>
+                            <div class="filter-group">
+                                <label for="ttWeekdaySelect">Day of Week</label>
+                                <select id="ttWeekdaySelect" class="form-select">
+                                    <option value="">All Days (Overview)</option>
+                                    <option value="monday">Monday</option>
+                                    <option value="tuesday">Tuesday</option>
+                                    <option value="wednesday">Wednesday</option>
+                                    <option value="thursday">Thursday</option>
+                                    <option value="friday">Friday</option>
+                                    <option value="saturday">Saturday</option>
+                                </select>
+                            </div>
+                            <div class="filter-group">
+                                <label for="ttBatchSelect">Lab Batch</label>
+                                <select id="ttBatchSelect" class="form-select">
+                                    <option value="">All Batches</option>
+                                    <option value="Batch A">Batch A</option>
+                                    <option value="Batch B">Batch B</option>
+                                </select>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- NEXT CLASS MODAL/DRAWER STATUS CARD -->
+                    <div id="nextClassResultBox" class="result-callout-card" hidden>
+                        <div class="callout-header">
+                            <strong id="nextClassResultTitle">Next Class Lookup</strong>
+                            <button id="closeNextClassResultBtn" class="close-icon-btn" aria-label="Close next class details">✕</button>
+                        </div>
+                        <div id="nextClassResultBody" class="callout-body">
+                            <!-- Populated dynamically -->
+                        </div>
+                    </div>
+
+                    <!-- TIMETABLE STATUS & DATA CONTAINER -->
+                    <div id="timetableContainer" class="timetable-display-area">
+                        <!-- Loading State -->
+                        <div id="timetableLoading" class="state-container" hidden>
+                            <div class="spinner" aria-hidden="true"></div>
+                            <p>Loading verified schedule records from Sapthagiri NPS University...</p>
+                        </div>
+
+                        <!-- Provisional / Partial Notice -->
+                        <div id="timetableProvisionalNotice" class="advisory-banner">
+                            <div class="advisory-badge">PROVISIONAL REGISTRATION</div>
+                            <h3>Schedule Pending Official Release for Section <span id="ttNoticeSection">1ECE02</span></h3>
+                            <p>
+                                Section <strong>1ECE02</strong> is verified and registered under the Department of Electronics and Communication Engineering. However, detailed day-by-day periods, timings, and classroom allocations are pending official publication by university administration.
+                            </p>
+                            <div class="notice-meta">
+                                <span>Source: Department Initial Submission (Provisional)</span>
+                                <span>Verification Status: partial_verified</span>
+                            </div>
+                        </div>
+
+                        <!-- Schedule Grid / Table (When entries exist) -->
+                        <div id="timetableTableWrapper" class="table-responsive" hidden>
+                            <table class="schedule-table" aria-label="Class Timetable">
+                                <thead>
+                                    <tr>
+                                        <th scope="col">Period</th>
+                                        <th scope="col">Time</th>
+                                        <th scope="col">Day</th>
+                                        <th scope="col">Subject</th>
+                                        <th scope="col">Faculty</th>
+                                        <th scope="col">Room / Lab</th>
+                                        <th scope="col">Batch</th>
+                                    </tr>
+                                </thead>
+                                <tbody id="timetableTableBody">
+                                    <!-- Rendered dynamically -->
+                                </tbody>
+                            </table>
+                        </div>
+
+                        <!-- Unregistered Section State -->
+                        <div id="timetableUnregisteredState" class="state-container" hidden>
+                            <span class="state-icon" aria-hidden="true">⚠️</span>
+                            <h3>Section Not Yet Published</h3>
+                            <p id="timetableUnregisteredMsg">The requested section is not yet available in the verified university repository. Please select a registered section or contact department administration.</p>
+                        </div>
+                    </div>
+                </section>
+
+                <!-- VIEW 3: CAMPUS & CLASSROOM DIRECTORY -->
+                <section id="directoryView" class="view-panel" aria-label="Campus Directory" hidden>
+                    <div class="panel-header">
+                        <div>
+                            <div class="panel-category">CAMPUS INFRASTRUCTURE</div>
+                            <h2 class="panel-title">Classroom & Facilities Directory</h2>
+                        </div>
+                    </div>
+
+                    <!-- DIRECTORY SEARCH & CATEGORY PILLS -->
+                    <div class="directory-filter-bar">
+                        <div class="search-input-wrap">
+                            <span class="search-icon" aria-hidden="true">🔍</span>
+                            <label for="directorySearchInput" class="sr-only">Search facilities, laboratories, library, or equipment</label>
+                            <input type="text" id="directorySearchInput" placeholder="Search facilities, laboratories, equipment, or locations..." autocomplete="off">
+                        </div>
+                        <div class="category-pills" role="radiogroup" aria-label="Filter by facility type">
+                            <button class="pill-btn active" data-category="all" role="radio" aria-checked="true">All Facilities</button>
+                            <button class="pill-btn" data-category="laboratory" role="radio" aria-checked="false">Laboratories</button>
+                            <button class="pill-btn" data-category="library" role="radio" aria-checked="false">Libraries</button>
+                        </div>
+                    </div>
+
+                    <!-- DIRECTORY CARDS GRID -->
+                    <div id="directoryGrid" class="directory-grid" aria-live="polite">
+                        <!-- Populated dynamically via GET /api/campus/facilities -->
+                        <div class="state-container">
+                            <div class="spinner" aria-hidden="true"></div>
+                            <p>Loading verified campus facilities...</p>
+                        </div>
+                    </div>
+                </section>
+
+                <!-- VIEW 4: AI ASSISTANT CHAT -->
+                <section id="chatView" class="view-panel chat-panel" aria-label="AI Assistant Chat" hidden>
+                    <div class="chat-header">
+                        <div>
+                            <div class="panel-category">AUTONOMOUS ASSISTANT</div>
+                            <h2 class="panel-title">RA NEXUS Assistant</h2>
+                        </div>
+                        <div class="chat-header-actions">
+                            <button id="clearChatBtn" class="secondary-button-sm" title="Clear conversation history">Clear Chat</button>
+                        </div>
+                    </div>
+
+                    <!-- STUDENT CONTEXT IN CHAT -->
+                    <div class="chat-context-bar" id="chatContextBar">
+                        <span class="context-icon" aria-hidden="true">📌</span>
+                        <span>Active Context: <strong id="chatContextSection">ECE • 1ECE02</strong> (Batch All)</span>
+                        <button id="chatContextEditBtn" class="link-btn">Change</button>
+                    </div>
+
+                    <!-- MESSAGES CONTAINER -->
+                    <div id="liveAnnouncer" class="sr-only" role="status" aria-live="polite" aria-atomic="true"></div>
+                    <div id="messages" class="messages-container" role="log" aria-label="Conversation history" aria-relevant="additions text">
+                        <!-- Initial welcome message -->
+                        <div class="message-wrapper nexus-message">
+                            <div class="message-sender-badge">
+                                <span class="badge-dot" aria-hidden="true"></span>
+                                <strong>RA NEXUS Core</strong>
+                                <span class="badge-tag">Local Engine</span>
+                            </div>
+                            <div class="message-bubble">
+                                Welcome to <strong>RA NEXUS</strong> by <strong>RA TECH</strong> for Sapthagiri NPS University.
+                                <p style="margin-top: 6px;">
+                                    The assistant operates autonomously with deterministic local tooling (no external cloud LLMs required). Available functions include:
+                                </p>
+                                <ul class="chat-intro-list">
+                                    <li><strong>Class &amp; Timetable Lookups:</strong> Section 1ECE02 registered (provisional).</li>
+                                    <li><strong>Current / Next Class:</strong> Deterministic schedule resolution.</li>
+                                    <li><strong>Campus Facilities &amp; Labs:</strong> Verified locations, equipment, and library hours.</li>
+                                    <li><strong>Safe Calculator:</strong> AST-sandboxed arithmetic.</li>
+                                    <li><strong>System Diagnostics:</strong> Real-time engine telemetry and staging status.</li>
+                                </ul>
+                                Type your query below or select a suggested prompt from the Dashboard.
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- CHAT INPUT COMPONENT -->
+                    <div class="chat-input-wrapper">
+                        <div class="chat-input-box">
+                            <label for="messageInput" class="sr-only">Type your question for RA NEXUS</label>
+                            <textarea
+                                id="messageInput"
+                                rows="1"
+                                placeholder="Ask a question (e.g. 'Where is the computer lab?', 'Show timetable', 'Calculate 24*15')..."
+                                autocomplete="off"
+                                maxlength="2000"
+                            ></textarea>
+                            <button id="sendButton" class="send-btn" aria-label="Send message">
+                                <span aria-hidden="true">➤</span>
+                            </button>
+                        </div>
+                        <div class="chat-input-footer">
+                            <span class="disclaimer-text">Grounded in Sapthagiri NPS University verified records &bull; RA TECH Local Engine &bull; Zero external cloud tracking</span>
+                            <span class="key-hint">Press <strong>Enter</strong> to send, <strong>Shift+Enter</strong> for new line</span>
+                        </div>
+                    </div>
+                </section>
+
+                <!-- VIEW 5: STUDENT ACADEMIC PROFILE -->
+                <section id="profileView" class="view-panel" aria-label="Student Academic Profile" hidden>
+                    <div class="panel-header">
+                        <div>
+                            <div class="panel-category">IDENTITY & PREFERENCES</div>
+                            <h2 class="panel-title">Student Academic Profile</h2>
+                        </div>
+                    </div>
+
+                    <div class="profile-card-container">
+                        <div class="profile-explainer">
+                            <p>
+                                Select your academic branch, year, semester, section, and laboratory batch. RA NEXUS uses these parameters to return section-isolated timetables and relevant laboratory schedules.
+                            </p>
+                            <div class="privacy-note">
+                                <strong>Privacy Notice:</strong> This profile is stored locally in your browser session. RA NEXUS does not require passwords or collect personal data.
+                            </div>
+                        </div>
+
+                        <form id="profileForm" class="profile-form">
+                            <div class="form-row">
+                                <div class="form-field">
+                                    <label for="profBranch">Branch of Study</label>
+                                    <select id="profBranch" class="form-select" required>
+                                        <option value="ECE">Electronics and Communication Engineering (ECE)</option>
+                                        <option value="CSE">Computer Science and Engineering (CSE)</option>
+                                        <option value="ISE">Information Science and Engineering (ISE)</option>
+                                        <option value="MECH">Mechanical Engineering (MECH)</option>
+                                        <option value="CIVIL">Civil Engineering (CIVIL)</option>
+                                    </select>
+                                </div>
+                                <div class="form-field">
+                                    <label for="profYear">Academic Year</label>
+                                    <select id="profYear" class="form-select">
+                                        <option value="1">1st Year</option>
+                                        <option value="2">2nd Year</option>
+                                        <option value="3">3rd Year</option>
+                                        <option value="4">4th Year</option>
+                                    </select>
+                                </div>
+                            </div>
+
+                            <div class="form-row">
+                                <div class="form-field">
+                                    <label for="profSemester">Semester</label>
+                                    <select id="profSemester" class="form-select">
+                                        <option value="1">Semester 1</option>
+                                        <option value="2" selected>Semester 2</option>
+                                        <option value="3">Semester 3</option>
+                                        <option value="4">Semester 4</option>
+                                        <option value="5">Semester 5</option>
+                                        <option value="6">Semester 6</option>
+                                        <option value="7">Semester 7</option>
+                                        <option value="8">Semester 8</option>
+                                    </select>
+                                </div>
+                                <div class="form-field">
+                                    <label for="profSection">Section ID</label>
+                                    <input type="text" id="profSection" class="form-input" value="1ECE02" placeholder="e.g. 1ECE02" required maxlength="20">
+                                    <small class="field-hint">Available verified section: 1ECE02</small>
+                                </div>
+                            </div>
+
+                            <div class="form-row">
+                                <div class="form-field">
+                                    <label for="profBatch">Laboratory Batch (Optional)</label>
+                                    <select id="profBatch" class="form-select">
+                                        <option value="All">All / Whole Class</option>
+                                        <option value="Batch A">Batch A</option>
+                                        <option value="Batch B">Batch B</option>
+                                        <option value="Batch C">Batch C</option>
+                                    </select>
+                                </div>
+                            </div>
+
+                            <!-- Live Validation Feedback -->
+                            <div id="profileValidationBox" class="validation-feedback neutral">
+                                <span class="feedback-icon" aria-hidden="true">ℹ</span>
+                                <span id="profileValidationText">Section 1ECE02 is verified in institutional records (provisional schedule).</span>
+                            </div>
+
+                            <div class="form-actions">
+                                <button type="submit" class="primary-button" id="saveProfileBtn">Save Academic Profile</button>
+                                <button type="button" class="secondary-button" id="resetProfileBtn">Reset to Default</button>
+                            </div>
+                        </form>
+                    </div>
+                </section>
+
+                <!-- VIEW 6: SYSTEM DIAGNOSTICS & TELEMETRY -->
+                <section id="systemView" class="view-panel" aria-label="System Diagnostics" hidden>
+                    <div class="panel-header">
+                        <div>
+                            <div class="panel-category">TELEMETRY & SECURITY</div>
+                            <h2 class="panel-title">System Diagnostics</h2>
+                        </div>
+                        <button id="refreshDiagnosticsBtn" class="secondary-button-sm">Refresh Status</button>
+                    </div>
+
+                    <div class="diagnostics-grid">
+                        <div class="diag-card">
+                            <div class="diag-label">INSTITUTION</div>
+                            <strong class="diag-val">Sapthagiri NPS University</strong>
+                            <span class="diag-sub">Autonomous Campus Assistant Portal</span>
+                        </div>
+                        <div class="diag-card">
+                            <div class="diag-label">ENGINE VERSION</div>
+                            <strong class="diag-val">RA NEXUS v0.1.0</strong>
+                            <span class="diag-sub">Deterministic Agent Architecture</span>
+                        </div>
+                        <div class="diag-card">
+                            <div class="diag-label">SYSTEM HEALTH</div>
+                            <strong class="diag-val text-green" id="diagHealthVal">Online</strong>
+                            <span class="diag-sub" id="diagHealthSub">FastAPI Backend Operational</span>
+                        </div>
+                        <div class="diag-card">
+                            <div class="diag-label">RATE LIMITING</div>
+                            <strong class="diag-val">60 Req / Minute</strong>
+                            <span class="diag-sub">Sliding-Window IP Defense Active</span>
+                        </div>
+                    </div>
+
+                    <div class="section-container">
+                        <h3 class="section-heading">Active Security Boundaries</h3>
+                        <div class="security-list">
+                            <div class="sec-item">
+                                <span class="sec-dot" aria-hidden="true">✔</span>
+                                <div>
+                                    <strong>Content Security Policy (CSP)</strong>
+                                    <p>Strict 'self' policy enforced. Inline scripts, external fonts, and untrusted origins blocked.</p>
+                                </div>
+                            </div>
+                            <div class="sec-item">
+                                <span class="sec-dot" aria-hidden="true">✔</span>
+                                <div>
+                                    <strong>Safe Arithmetic Evaluator</strong>
+                                    <p>AST-parsed sandbox with strict operator whitelist, node cap (40), and exponent limits. Zero eval() usage.</p>
+                                </div>
+                            </div>
+                            <div class="sec-item">
+                                <span class="sec-dot" aria-hidden="true">✔</span>
+                                <div>
+                                    <strong>Strict Section Isolation</strong>
+                                    <p>Deterministic section validation guarantees student data boundaries between university classes.</p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="section-container">
+                        <h3 class="section-heading">Verified Data Registry</h3>
+                        <div class="data-registry-card">
+                            <div class="registry-row">
+                                <span class="reg-label">Registered Sections:</span>
+                                <span class="reg-val">1ECE02 (Electronics and Communication Engineering)</span>
+                            </div>
+                            <div class="registry-row">
+                                <span class="reg-label">Timetable Status:</span>
+                                <span class="reg-val">Provisional (Weekly period timings pending official release)</span>
+                            </div>
+                            <div class="registry-row">
+                                <span class="reg-label">Campus Knowledge:</span>
+                                <span class="reg-val">Verified records for Electronics Lab, Computer Lab, and Central Library</span>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="section-container">
+                        <h3 class="section-heading">Stage 5B Isolated Staging Pipeline</h3>
+                        <div class="diagnostics-grid">
+                            <div class="diag-card">
+                                <div class="diag-label">STAGING STATUS</div>
+                                <strong class="diag-val text-amber" id="diagStagingStatus">Pending Review</strong>
+                                <span class="diag-sub">Isolated from Live Catalog</span>
+                            </div>
+                            <div class="diag-card">
+                                <div class="diag-label">STAGED SECTIONS</div>
+                                <strong class="diag-val" id="diagStagingSections">75 Sections</strong>
+                                <span class="diag-sub">Physics &amp; Electronics Cycles</span>
+                            </div>
+                            <div class="diag-card">
+                                <div class="diag-label">EXTRACTED ENTRIES</div>
+                                <strong class="diag-val" id="diagStagingEntries">2,682 Entries</strong>
+                                <span class="diag-sub">0 Unknown Subject Codes</span>
+                            </div>
+                            <div class="diag-card">
+                                <div class="diag-label">PRODUCTION ISOLATION</div>
+                                <strong class="diag-val text-green" id="diagProductionStatus">100% Isolated</strong>
+                                <span class="diag-sub">SHA-256 Verified Intact</span>
+                            </div>
+                        </div>
+                    </div>
+                </section>
+
+                <!-- VIEW 7: ABOUT RA NEXUS -->
+                <section id="aboutView" class="view-panel" aria-label="About RA NEXUS" hidden>
+                    <div class="panel-header">
+                        <div>
+                            <div class="panel-category">TECHNOLOGY &amp; ARCHITECTURE</div>
+                            <h2 class="panel-title">About RA NEXUS</h2>
+                        </div>
+                        <div class="brand-chip">
+                            <span class="brand-label">BRAND</span>
+                            <strong>RA TECH</strong>
+                        </div>
+                    </div>
+
+                    <div class="about-hero-card">
+                        <div class="about-badge">CAMPUS AI ASSISTANT &amp; TIMETABLE PORTAL</div>
+                        <h3 class="about-hero-heading">Autonomous Academic Intelligence for Sapthagiri NPS University</h3>
+                        <p class="about-hero-text">
+                            <strong>RA NEXUS</strong> is an enterprise-grade academic assistant and timetable portal engineered by <strong>RA TECH</strong> for Sapthagiri NPS University. Designed for undergraduate engineering students, department faculty, and academic advisors, RA NEXUS delivers deterministic, verifiable answers regarding classroom schedules, period allocations, campus laboratories, and administrative facilities.
+                        </p>
+                        <div class="about-core-tenets">
+                            <div class="tenet-chip">
+                                <span class="tenet-icon" aria-hidden="true">🛡</span>
+                                <div>
+                                    <strong>Zero Hallucination</strong>
+                                    <p>Responses are grounded strictly in verified institutional records or AST computation.</p>
+                                </div>
+                            </div>
+                            <div class="tenet-chip">
+                                <span class="tenet-icon" aria-hidden="true">🔒</span>
+                                <div>
+                                    <strong>Section Isolation</strong>
+                                    <p>Strict multi-tenant boundaries ensure branch, semester, and batch schedules never bleed.</p>
+                                </div>
+                            </div>
+                            <div class="tenet-chip">
+                                <span class="tenet-icon" aria-hidden="true">⚡</span>
+                                <div>
+                                    <strong>Local &amp; Private</strong>
+                                    <p>Runs offline and locally without transmitting student data to third-party cloud LLMs.</p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- ARCHITECTURE BREAKDOWN -->
+                    <div class="section-container">
+                        <h3 class="section-heading">System Architecture &amp; Subsystems</h3>
+                        <p class="section-subtext">Engineered with modular, deterministic components to guarantee correctness and security.</p>
+                        <div class="arch-cards-grid">
+                            <div class="arch-card">
+                                <div class="arch-card-header">
+                                    <span class="arch-icon" aria-hidden="true">🧭</span>
+                                    <h4>Deterministic Intent Router</h4>
+                                </div>
+                                <p>
+                                    Analyzes user prompts in real time to classify intents into timetable lookups, campus knowledge inquiries, safe arithmetic, or system diagnostics without relying on unpredictable prompt drift.
+                                </p>
+                                <span class="arch-tag">Subsystem: backend/agent.py</span>
+                            </div>
+                            <div class="arch-card">
+                                <div class="arch-card-header">
+                                    <span class="arch-icon" aria-hidden="true">📅</span>
+                                    <h4>Section-Isolated Timetable Engine</h4>
+                                </div>
+                                <p>
+                                    Enforces academic boundaries by indexing class schedules by branch, semester, section ID, and lab batch. Resolves current and next class deterministically based on client time.
+                                </p>
+                                <span class="arch-tag">Subsystem: backend/timetable_engine.py</span>
+                            </div>
+                            <div class="arch-card">
+                                <div class="arch-card-header">
+                                    <span class="arch-icon" aria-hidden="true">🔢</span>
+                                    <h4>AST-Sandboxed Safe Calculator</h4>
+                                </div>
+                                <p>
+                                    Evaluates mathematical formulas using Python Abstract Syntax Trees (AST) with strict whitelists of binary/unary operators, a 40-node ceiling, and exponent magnitude limits. Zero arbitrary code execution (<code>eval</code>).
+                                </p>
+                                <span class="arch-tag">Subsystem: backend/tools.py</span>
+                            </div>
+                            <div class="arch-card">
+                                <div class="arch-card-header">
+                                    <span class="arch-icon" aria-hidden="true">🏢</span>
+                                    <h4>Grounded Campus Knowledge Store</h4>
+                                </div>
+                                <p>
+                                    Provides instantaneous lookups for specialized university facilities, research laboratories, computer centers, and operating hours sourced from validated institutional JSON files.
+                                </p>
+                                <span class="arch-tag">Subsystem: data/knowledge.json</span>
+                            </div>
+                            <div class="arch-card">
+                                <div class="arch-card-header">
+                                    <span class="arch-icon" aria-hidden="true">📦</span>
+                                    <h4>Isolated Staging Pipeline (Stage 5B)</h4>
+                                </div>
+                                <p>
+                                    Automates workbook extraction for 75 first-year sections while strictly walling off unapproved records in isolated staging (<code>data/staging/</code>) with cryptographic SHA-256 provenance tracking.
+                                </p>
+                                <span class="arch-tag">Subsystem: backend/timetable_staging.py</span>
+                            </div>
+                            <div class="arch-card">
+                                <div class="arch-card-header">
+                                    <span class="arch-icon" aria-hidden="true">🛡</span>
+                                    <h4>Defense-in-Depth Web Security</h4>
+                                </div>
+                                <p>
+                                    Features strict Content Security Policy (no inline scripts/styles), sliding-window IP rate limiting (60 req/min), GZip compression, and complete absence of external CDN tracking scripts.
+                                </p>
+                                <span class="arch-tag">Subsystem: backend/main.py</span>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- CURRENT CAPABILITIES & LIMITATIONS -->
+                    <div class="section-container">
+                        <h3 class="section-heading">Operational Capabilities &amp; Limitations</h3>
+                        <div class="capabilities-grid">
+                            <div class="cap-column cap-working">
+                                <h4 class="cap-title"><span aria-hidden="true">✔</span> Verified Working Capabilities</h4>
+                                <ul class="cap-list">
+                                    <li><strong>Provisional Timetable Lookup:</strong> Section 1ECE02 registered in production catalog with course and faculty associations.</li>
+                                    <li><strong>Real-time Next Class Resolution:</strong> Computes ongoing or upcoming lecture given section and client timestamp.</li>
+                                    <li><strong>Interactive Facilities Directory:</strong> Real-time keyword search and category filtering across university laboratories and libraries.</li>
+                                    <li><strong>Autonomous Assistant Chat:</strong> Dispatches queries to domain tools with visible execution badges and conversational history.</li>
+                                    <li><strong>Local Profile Context:</strong> Session-persisted student branch and section configuration with live validation.</li>
+                                    <li><strong>Automated Staging Status:</strong> Read-only monitoring of Stage 5B extraction metrics and validation reports.</li>
+                                </ul>
+                            </div>
+                            <div class="cap-column cap-limits">
+                                <h4 class="cap-title"><span aria-hidden="true">ℹ</span> Honest Operational Disclosures</h4>
+                                <ul class="cap-list">
+                                    <li><strong>Production Timetable Scope:</strong> Only Section 1ECE02 provisional data is active in production. Weekly period schedules for remaining sections await official administrative release.</li>
+                                    <li><strong>Staging Dataset Isolation:</strong> The 75 sections and 2,682 extracted schedule records in Stage 5B are kept in <code>pending_review</code> status and cannot be served to students until authorized.</li>
+                                    <li><strong>No External Cloud LLMs:</strong> The assistant intentionally does not connect to external third-party paid AI APIs to preserve student privacy and eliminate recurring service costs.</li>
+                                    <li><strong>In-Memory Rate Limiting:</strong> Rate-limiting counters operate in single-process memory; multi-worker cluster deployments require a shared cache (such as Redis).</li>
+                                </ul>
+                            </div>
+                        </div>
+                    </div>
+                </section>
+            </main>
+        </div>
     </div>
 
-
     <script src="app.js"></script>
-
 </body>
-
 </html>

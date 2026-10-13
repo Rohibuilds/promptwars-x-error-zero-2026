@@ -68,8 +68,10 @@ class TestTools(unittest.TestCase):
         status = get_system_status()
         self.assertEqual(status["name"], "RA NEXUS")
         self.assertEqual(status["status"], "online")
+        self.assertEqual(status["institution"], "Sapthagiri NPS University")
         self.assertIn("calculator", status["tools"])
         self.assertIn("knowledge_search", status["tools"])
+        self.assertIn("timetable_engine", status["tools"])
 
 
 if __name__ == "__main__":
