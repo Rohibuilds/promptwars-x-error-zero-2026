@@ -12,8 +12,8 @@ import logging
 import os
 from pathlib import Path
 import time
-from typing import Dict, List
-from fastapi import FastAPI, HTTPException, Request, Response, status
+from typing import Any, Dict, List, Optional, Union
+from fastapi import FastAPI, HTTPException, Query, Request, Response, status
 from fastapi.middleware.cors import CORSMiddleware
 from fastapi.middleware.gzip import GZipMiddleware
 from fastapi.staticfiles import StaticFiles
@@ -21,6 +21,8 @@ from pydantic import BaseModel, Field, field_validator
 from starlette.middleware.base import BaseHTTPMiddleware
 
 from .agent import run_agent
+from .timetable_staging import get_staging_status
+from .tools import _default_timetable_engine, load_knowledge_base
 
 logger = logging.getLogger("ra_nexus")
 logging.basicConfig(level=logging.INFO, format="%(asctime)s [%(levelname)s] %(name)s: %(message)s")
@@ -138,9 +140,23 @@ app.add_middleware(
 )
 
 
+class StudentContext(BaseModel):
+    """Validated student academic profile context."""
+    branch: Optional[str] = Field(default=None, max_length=20, description="Engineering branch code (e.g. ECE)")
+    academic_year: Optional[Union[int, str]] = Field(default=None, description="Academic year (e.g. 1, '1st Year')")
+    semester: Optional[Union[int, str]] = Field(default=None, description="Semester (1-8)")
+    section: Optional[str] = Field(default=None, max_length=20, description="University section identifier (e.g. 1ECE02)")
+    batch: Optional[str] = Field(default=None, max_length=20, description="Laboratory batch (e.g. Batch A)")
+
+
 class ChatRequest(BaseModel):
     """Schema for chat requests with validation and sanitization."""
     message: str = Field(min_length=1, max_length=2000, description="User prompt message")
+    student_context: Optional[Union[StudentContext, Dict[str, Any]]] = Field(
+        default=None,
+        description="Optional student profile context (branch, section, etc.)"
+    )
+    client_time: Optional[str] = Field(default=None, max_length=60, description="Optional client ISO timestamp")
 
     @field_validator("message")
     @classmethod
@@ -161,8 +177,129 @@ def health() -> Dict[str, str]:
     """
     return {
         "name": "RA NEXUS",
+        "institution": "Sapthagiri NPS University",
         "version": "0.1.0",
         "status": "online"
+    }
+
+
+@app.get("/api/timetable/sections")
+def get_sections(
+    branch: Optional[str] = Query(None, max_length=20, description="Filter by engineering branch (e.g. ECE)"),
+    semester: Optional[int] = Query(None, ge=1, le=8, description="Filter by semester (1-8)")
+) -> Dict[str, Any]:
+    """Retrieves registered university sections matching filters."""
+    sections = _default_timetable_engine.get_sections(branch=branch, semester=semester)
+    return {
+        "institution": "Sapthagiri NPS University",
+        "count": len(sections),
+        "sections": sections
+    }
+
+
+@app.get("/api/timetable/subjects")
+def get_subjects(
+    section: str = Query(..., min_length=1, max_length=20, description="University section ID (e.g. 1ECE02)"),
+    branch: Optional[str] = Query(None, max_length=20, description="Optional branch validation (e.g. ECE)")
+) -> Dict[str, Any]:
+    """Retrieves course subjects, faculty assignments, and rooms for a section."""
+    res = _default_timetable_engine.get_subjects_for_section(section=section, branch=branch)
+    if res.get("status") == "section_not_found":
+        raise HTTPException(
+            status_code=status.HTTP_404_NOT_FOUND,
+            detail=res.get("message", f"Section '{section}' is not registered.")
+        )
+    if res.get("status") == "branch_mismatch":
+        raise HTTPException(
+            status_code=status.HTTP_400_BAD_REQUEST,
+            detail=res.get("message", f"Branch mismatch for section '{section}'.")
+        )
+    return {
+        "institution": "Sapthagiri NPS University",
+        **res
+    }
+
+
+@app.get("/api/timetable/schedule")
+def get_schedule(
+    section: str = Query(..., min_length=1, max_length=20, description="University section ID (e.g. 1ECE02)"),
+    branch: Optional[str] = Query(None, max_length=20, description="Optional branch validation (e.g. ECE)"),
+    weekday: Optional[str] = Query(None, max_length=20, description="Filter by day of week (monday-sunday)"),
+    period: Optional[int] = Query(None, ge=1, le=12, description="Filter by period number (1-12)"),
+    batch: Optional[str] = Query(None, max_length=20, description="Filter by laboratory batch (e.g. Batch A)")
+) -> Dict[str, Any]:
+    """Retrieves class timetable entries for a section with optional weekday/batch filters."""
+    res = _default_timetable_engine.get_schedule_for_section(
+        section=section,
+        branch=branch,
+        weekday=weekday,
+        period=period,
+        batch=batch
+    )
+    if res.get("status") == "section_not_found":
+        raise HTTPException(
+            status_code=status.HTTP_404_NOT_FOUND,
+            detail=res.get("message", f"Section '{section}' is not registered.")
+        )
+    if res.get("status") == "branch_mismatch":
+        raise HTTPException(
+            status_code=status.HTTP_400_BAD_REQUEST,
+            detail=res.get("message", f"Branch mismatch for section '{section}'.")
+        )
+    if res.get("status") == "invalid_weekday":
+        raise HTTPException(
+            status_code=status.HTTP_400_BAD_REQUEST,
+            detail=res.get("message", f"Invalid weekday '{weekday}'.")
+        )
+    return {
+        "institution": "Sapthagiri NPS University",
+        **res
+    }
+
+
+@app.get("/api/timetable/next-class")
+def get_next_class(
+    section: str = Query(..., min_length=1, max_length=20, description="University section ID (e.g. 1ECE02)"),
+    client_time: Optional[str] = Query(None, max_length=60, description="Client ISO 8601 timestamp"),
+    batch: Optional[str] = Query(None, max_length=20, description="Laboratory batch filter")
+) -> Dict[str, Any]:
+    """Deterministically checks current and next class for a section.
+
+    Safe: Returns missing information explanations if schedule or client time are unavailable.
+    """
+    res = _default_timetable_engine.get_current_and_next_class(
+        section=section,
+        client_time_str=client_time,
+        batch=batch
+    )
+    if res.get("status") == "section_not_found":
+        raise HTTPException(
+            status_code=status.HTTP_404_NOT_FOUND,
+            detail=res.get("message", f"Section '{section}' is not registered.")
+        )
+    return {
+        "institution": "Sapthagiri NPS University",
+        **res
+    }
+
+
+@app.get("/api/timetable/staging-status")
+def get_timetable_staging_status() -> Dict[str, Any]:
+    """Retrieves operational staging status, record metrics, and validation state for Stage 5B."""
+    return {
+        "institution": "Sapthagiri NPS University",
+        **get_staging_status()
+    }
+
+
+@app.get("/api/campus/facilities")
+def get_campus_facilities() -> Dict[str, Any]:
+    """Retrieves verified campus facilities, laboratories, and services from institutional records."""
+    facilities = load_knowledge_base()
+    return {
+        "institution": "Sapthagiri NPS University",
+        "count": len(facilities),
+        "facilities": facilities
     }
 
 
@@ -180,7 +317,18 @@ def chat(request: ChatRequest) -> Dict:
         HTTPException: 500 status code with safe message on unexpected execution errors.
     """
     try:
-        return run_agent(request.message)
+        ctx_dict = None
+        if request.student_context:
+            if isinstance(request.student_context, BaseModel):
+                ctx_dict = request.student_context.model_dump(exclude_none=True)
+            elif isinstance(request.student_context, dict):
+                ctx_dict = request.student_context
+
+        return run_agent(
+            request.message,
+            student_context=ctx_dict,
+            client_time=request.client_time
+        )
     except Exception as exc:
         logger.exception("Unexpected error executing agent for query: %s", exc)
         raise HTTPException(

@@ -74,6 +74,38 @@ class TestAPI(unittest.TestCase):
         self.assertEqual(data["type"], "calculator")
         self.assertIn("45", data["response"])
 
+    def test_chat_library_timing_disambiguation(self):
+        """Test that natural question 'What is the library timing?' routes to knowledge base via API."""
+        response = self.client.post("/chat", json={"message": "What is the library timing?"})
+        self.assertEqual(response.status_code, 200)
+        data = response.json()
+        self.assertEqual(data["type"], "knowledge")
+        self.assertIn("9:00 AM to 6:00 PM", data["response"])
+
+    def test_chat_timetable_without_context(self):
+        """Test asking timetable questions without student section context."""
+        response = self.client.post("/chat", json={"message": "Where is my next class?"})
+        self.assertEqual(response.status_code, 200)
+        data = response.json()
+        self.assertEqual(data["type"], "timetable")
+        self.assertEqual(data["status"], "context_required")
+        self.assertIn("specify your branch and section", data["response"].lower())
+
+    def test_chat_timetable_with_student_context(self):
+        """Test asking timetable questions with valid student section context."""
+        response = self.client.post(
+            "/chat",
+            json={
+                "message": "Show my timetable",
+                "student_context": {"section": "1ECE02", "branch": "ECE"}
+            }
+        )
+        self.assertEqual(response.status_code, 200)
+        data = response.json()
+        self.assertEqual(data["type"], "timetable")
+        self.assertEqual(data["status"], "schedule_pending")
+        self.assertIn("1ECE02", data["response"])
+
     def test_chat_empty_message_validation(self):
         """Test validation error for empty message payload."""
         response = self.client.post("/chat", json={"message": ""})
@@ -118,6 +150,16 @@ class TestAPI(unittest.TestCase):
         response = self.client.get("/")
         self.assertEqual(response.status_code, 200)
         self.assertIn("RA NEXUS", response.text)
+
+    def test_get_campus_facilities(self):
+        """Test the /api/campus/facilities directory endpoint."""
+        response = self.client.get("/api/campus/facilities")
+        self.assertEqual(response.status_code, 200)
+        data = response.json()
+        self.assertEqual(data["institution"], "Sapthagiri NPS University")
+        self.assertGreaterEqual(data["count"], 1)
+        self.assertIsInstance(data["facilities"], list)
+        self.assertTrue(any(f["title"] == "Electronics Laboratory" for f in data["facilities"]))
 
 
 if __name__ == "__main__":

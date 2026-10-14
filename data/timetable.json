@@ -1,0 +1,48 @@
+{
+  "institution": "Sapthagiri NPS University",
+  "version": "1.0.0",
+  "last_updated": "2026-10-12",
+  "data_status": "partial_initial_dataset",
+  "metadata": {
+    "description": "Official institutional timetable repository. Currently contains verified initial registration for ECE section 1ECE02. Complete university-wide schedules will be populated as official datasets are validated.",
+    "supported_sections": ["1ECE02"],
+    "supported_branches": ["ECE"]
+  },
+  "sections_catalog": [
+    {
+      "section_id": "1ECE02",
+      "branch": "ECE",
+      "branch_name": "Electronics and Communication Engineering",
+      "academic_year": null,
+      "semester": null,
+      "effective_date": null,
+      "source_document": "Department Initial Submission (Provisional)",
+      "verification_status": "partial_verified",
+      "notes": "Verified registered section for ECE. Detailed period timings and weekly day-by-day schedules are pending official release."
+    }
+  ],
+  "entries": [
+    {
+      "id": "1ECE02-PROV-001",
+      "academic_year": null,
+      "branch": "ECE",
+      "semester": null,
+      "section": "1ECE02",
+      "subject_code": null,
+      "subject_name": null,
+      "faculty_name": null,
+      "weekday": null,
+      "period": null,
+      "start_time": null,
+      "end_time": null,
+      "classroom": null,
+      "batch": "All",
+      "effective_date": null,
+      "source_metadata": {
+        "source_document": "Department Initial Submission (Provisional)",
+        "verification_status": "partial_verified",
+        "last_verified": "2026-10-12"
+      }
+    }
+  ]
+}
