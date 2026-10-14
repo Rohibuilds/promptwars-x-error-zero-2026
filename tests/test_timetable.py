@@ -306,6 +306,56 @@ class TestIntentRoutingDisambiguation(unittest.TestCase):
         res = run_agent("Where is my next class?")
         self.assertEqual(res["type"], "timetable")
         self.assertEqual(res["status"], "context_required")
+class TestCollegeTimetableRegression(unittest.TestCase):
+    """Adapted regression test suite preserving coverage from origin/main.
+
+    Adapts the original regression tests from commit 84c1251 to validate the
+    current modular architecture:
+    - Retained legacy dataset integrity (data/college_timetable.json)
+    - Prevention of timetable queries being misrouted to the calculator
+    - Honest status disclosure for pending weekly periods without guessing
+    """
+
+    def test_legacy_college_timetable_dataset_loads(self):
+        """Verify that the retained legacy college timetable dataset loads cleanly."""
+        legacy_path = Path(__file__).resolve().parent.parent / "data" / "college_timetable.json"
+        self.assertTrue(legacy_path.exists(), "data/college_timetable.json must exist")
+        with open(legacy_path, "r", encoding="utf-8") as f:
+            data = json.load(f)
+        self.assertEqual(data["section"], "1ECE02")
+        self.assertEqual(data["academic_year"], "2026-27")
+        self.assertTrue(data["room_day_entries"])
+
+    def test_timetable_queries_precede_calculator_routing(self):
+        """Timetable queries starting with 'what is' must never be misrouted to arithmetic calculator."""
+        queries = [
+            "What is the room for English on Day 1?",
+            "What is my Monday timetable?",
+            "What class do I have at 11:00 AM on Day 1?"
+        ]
+        for q in queries:
+            result = run_agent(q)
+            self.assertNotEqual(result["type"], "calculator", f"Query '{q}' was misrouted to calculator")
+
+    def test_timetable_pending_disclosure_for_registered_section(self):
+        """Registered section 1ECE02 honestly discloses that detailed period schedules are pending."""
+        result = run_agent("What is the timetable for 1ECE02?")
+        self.assertEqual(result["type"], "timetable")
+        self.assertEqual(result["status"], "schedule_pending")
+        self.assertIn("1ECE02", result["response"])
+
+    def test_weekday_schedule_not_invented(self):
+        """System never invents or hallucinates unreleased weekday schedules."""
+        result = run_agent("What is my Monday timetable?", student_context={"section": "1ECE02"})
+        self.assertEqual(result["type"], "timetable")
+        self.assertEqual(result["status"], "schedule_pending")
+        self.assertIn("pending official publication", result["response"].lower())
+
+    def test_missing_period_mapping_is_disclosed(self):
+        """Exact subject-to-period absence is honestly disclosed."""
+        result = run_agent("Show my timetable for tomorrow", student_context={"section": "1ECE02"})
+        self.assertEqual(result["type"], "timetable")
+        self.assertEqual(result["status"], "schedule_pending")
 
 
 if __name__ == "__main__":
